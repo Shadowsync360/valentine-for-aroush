@@ -3,141 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Aroush 💖 | Valentine Surprise</title>
+    <title>For Aroush 💖 | My Valentine</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Simple Test Version -->
-    <div class="container">
-        <div class="heart">❤️</div>
-        <h1>For My Aroush 💝</h1>
-        <p class="subtitle">My Bhallu, my Mari Jan</p>
+    <!-- Background Hearts -->
+    <div class="floating-hearts"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="heart-loader">❤️</div>
+        <p>Loading love for Aroush...</p>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container" id="main-container" style="display:none;">
         
-        <div class="message">
-            <p>This is a test to make sure GitHub Pages is working!</p>
-            <p>If you can see this, the site is live! 🎉</p>
+        <!-- STEP 1: Proposal -->
+        <section class="step active" id="step1">
+            <div class="envelope">
+                <div class="envelope-top"></div>
+                <div class="envelope-body">
+                    <div class="letter">
+                        <h1><i class="fas fa-heart"></i> My Dearest Aroush <i class="fas fa-heart"></i></h1>
+                        <p class="subtitle">My Bhallu, my Mari Jan 💖</p>
+                        
+                        <div class="question-box">
+                            <h2>Will you be my Valentine?</h2>
+                            <p>Not just for today, but for every day after?</p>
+                            
+                            <div class="buttons">
+                                <button class="btn-yes" id="yes-btn">
+                                    YES! 💕
+                                </button>
+                                <button class="btn-no" id="no-btn">
+                                    Hmm... let me think
+                                </button>
+                            </div>
+                            
+                            <div class="no-message" id="no-message">
+                                <p>Really, Bhallu? 🥺 Try again...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- STEP 2: Story -->
+        <section class="step" id="step2">
+            <div class="story-container">
+                <h1>Our Love Story</h1>
+                <div class="story-card">
+                    <div class="story-date">December 5, 2025</div>
+                    <div class="story-content">
+                        <h3>8:53 AM ⏰</h3>
+                        <p>The moment your message arrived. After 2 years of secretly admiring you in class, my heart finally found its home.</p>
+                        <p class="highlight">"Hey..." - the beginning of everything</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-date">First Confession</div>
+                    <div class="story-content">
+                        <h3>When Hearts Spoke 💌</h3>
+                        <p>That magical moment when we both confessed our feelings. No more hiding, just pure love.</p>
+                        <div class="chat mine">"I've liked you for so long..."</div>
+                        <div class="chat hers">"I like you too"</div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-date">3 Months Together</div>
+                    <div class="story-content">
+                        <h3>Every Day is Magic ✨</h3>
+                        <p>From classmates to soulmates. Every moment with you is precious.</p>
+                        <div class="love-meter">
+                            <div class="meter-fill"></div>
+                            <span>How much I love you: <strong>100%</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="next-btn" onclick="nextStep(3)">Continue to My Promises →</button>
+            </div>
+        </section>
+        
+        <!-- STEP 3: Promises -->
+        <section class="step" id="step3">
+            <div class="promises-container">
+                <h1>My Promises to You</h1>
+                
+                <div class="promise-card">
+                    <div class="promise-icon">🤝</div>
+                    <h3>I Will Always Support You</h3>
+                    <p>Your dreams are my dreams. I'll be there for every step, every achievement.</p>
+                </div>
+                
+                <div class="promise-card">
+                    <div class="promise-icon">🛡️</div>
+                    <h3>I Will Protect You</h3>
+                    <p>Your heart is safe with me. I'll defend you, cherish you, and keep you close.</p>
+                </div>
+                
+                <div class="promise-card">
+                    <div class="promise-icon">🌙</div>
+                    <h3>I Will Be There at 3 AM</h3>
+                    <p>Whenever you need to talk, cry, or just sit in silence - I'm here.</p>
+                </div>
+                
+                <div class="promise-card">
+                    <div class="promise-icon">💪</div>
+                    <h3>I Will Grow With You</h3>
+                    <p>I'm not perfect, but I promise to become better every day for you.</p>
+                </div>
+                
+                <div class="cat-section">
+                    <h3><i class="fas fa-cat"></i> Because you love cute things!</h3>
+                    <div class="cats">
+                        <span>😻</span>
+                        <span>🐱</span>
+                        <span>🐈</span>
+                        <span>😸</span>
+                    </div>
+                </div>
+                
+                <button class="next-btn" onclick="nextStep(4)">See Memories →</button>
+            </div>
+        </section>
+        
+        <!-- STEP 4: Memories -->
+        <section class="step" id="step4">
+            <div class="memories-container">
+                <h1>Our Precious Memories</h1>
+                
+                <div class="memory-grid">
+                    <div class="memory">
+                        <div class="memory-img" style="background:#ffafcc;">💌</div>
+                        <h4>The First Message</h4>
+                        <p>December 5, 8:53 AM</p>
+                    </div>
+                    
+                    <div class="memory">
+                        <div class="memory-img" style="background:#a2d2ff;">🌟</div>
+                        <h4>First "I Love You"</h4>
+                        <p>When you called me "mera bacha"</p>
+                    </div>
+                    
+                    <div class="memory">
+                        <div class="memory-img" style="background:#ffafbd;">😂</div>
+                        <h4>Inside Jokes</h4>
+                        <p>All our secret smiles</p>
+                    </div>
+                    
+                    <div class="memory">
+                        <div class="memory-img" style="background:#cdb4db;">🐻</div>
+                        <h4>Bhallu Moments</h4>
+                        <p>My cute bear 🍯</p>
+                    </div>
+                </div>
+                
+                <div class="secret-quiz">
+                    <h3>Quick Quiz About Us!</h3>
+                    <div class="quiz-item">
+                        <p>Why do I call you Bhallu?</p>
+                        <button class="quiz-btn" onclick="showAnswer(this, 'Because you\\'re my strong yet cuddly bear who I want to protect forever 🐻❤️')">Reveal Answer</button>
+                    </div>
+                </div>
+                
+                <button class="next-btn" onclick="nextStep(5)">Final Surprise →</button>
+            </div>
+        </section>
+        
+        <!-- STEP 5: Final -->
+        <section class="step" id="step5">
+            <div class="final-container">
+                <div class="lock">
+                    <div class="lock-icon">🔒</div>
+                    <h2>One Last Secret</h2>
+                    <p>Enter our special code to unlock the final message</p>
+                    
+                    <div class="password-box">
+                        <input type="text" id="password" placeholder="Hint: Bhallu or 0512">
+                        <button onclick="unlockMessage()">Unlock My Heart 🔓</button>
+                    </div>
+                    
+                    <div class="hints">
+                        <p><i class="fas fa-lightbulb"></i> Hint 1: My cute nickname for you</p>
+                        <p><i class="fas fa-lightbulb"></i> Hint 2: The day we started (DDMM)</p>
+                    </div>
+                </div>
+                
+                <div class="final-message" id="final-message">
+                    <h1>For My Aroush 💝</h1>
+                    
+                    <div class="message-content">
+                        <p>My dearest Bhallu,</p>
+                        
+                        <p>If you're reading this, you've unlocked the deepest part of my heart. Every moment since December 5th has been magical.</p>
+                        
+                        <p>I want you to know:</p>
+                        
+                        <ul>
+                            <li>You are the best thing that ever happened to me</li>
+                            <li>I will love you more every day</li>
+                            <li>I'm not perfect, but I'll spend my life trying to be perfect for you</li>
+                            <li>You'll always be my Bhallu, my Mari Jan</li>
+                        </ul>
+                        
+                        <p>This Valentine's Day is just the beginning of forever with you.</p>
+                        
+                        <div class="signature">
+                            <p>With all my love,</p>
+                            <p class="signature-name">Your Bacha 💖</p>
+                        </div>
+                    </div>
+                    
+                    <div class="countdown">
+                        <h3>Countdown to Forever</h3>
+                        <div class="countdown-box">
+                            <div><span id="days">000</span><br>Days</div>
+                            <div><span id="hours">00</span><br>Hours</div>
+                            <div><span id="minutes">00</span><br>Minutes</div>
+                            <div><span id="seconds">00</span><br>Seconds</div>
+                        </div>
+                    </div>
+                    
+                    <button class="share-btn" onclick="shareSite()">
+                        <i class="fas fa-share-alt"></i> Save This Memory
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="prevStep()">← Back</button>
+            <div class="dots">
+                <span class="dot active" onclick="goToStep(1)"></span>
+                <span class="dot" onclick="goToStep(2)"></span>
+                <span class="dot" onclick="goToStep(3)"></span>
+                <span class="dot" onclick="goToStep(4)"></span>
+                <span class="dot" onclick="goToStep(5)"></span>
+            </div>
+            <button class="nav-btn" onclick="nextStep()">Next →</button>
         </div>
         
-        <button onclick="showLove()" class="love-btn">
-            Click for Love! 💖
-        </button>
-        
-        <div id="love-message" class="hidden">
-            <p>I love you more than words can say!</p>
-            <p>From your Bacha ❤️</p>
+        <!-- Music Player -->
+        <div class="music-player">
+            <button onclick="toggleMusic()" id="music-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <p>Our Song: "Perfect" by Ed Sheeran</p>
+            <audio id="bg-music" loop>
+                <source src="https://assets.codepen.io/1468070/Perfect+Instrumental.mp3" type="audio/mpeg">
+            </audio>
         </div>
     </div>
     
-    <script>
-        function showLove() {
-            document.getElementById('love-message').classList.remove('hidden');
-            document.querySelector('.love-btn').textContent = 'I Love You Too! 💕';
-            
-            // Create hearts
-            for(let i=0; i<20; i++) {
-                let heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.style.position = 'fixed';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.top = Math.random() * 100 + '%';
-                heart.style.fontSize = (20 + Math.random() * 30) + 'px';
-                heart.style.opacity = 0.5;
-                heart.style.zIndex = '-1';
-                heart.style.pointerEvents = 'none';
-                document.body.appendChild(heart);
-            }
-        }
-    </script>
+    <!-- Confetti Container -->
+    <div id="confetti"></div>
     
-    <style>
-        body {
-            background: linear-gradient(135deg, #ff2e63, #1a1a2e);
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            padding: 50px;
-            min-height: 100vh;
-            margin: 0;
-        }
+    <script src="script.js"></script>
+</body>
+</html>
+                    <div class="countdown">
+                        <h3>Countdown to Forever</h3>
+                        <div class="countdown-box">
+                            <div><span id="days">000</span><br>Days</div>
+                            <div><span id="hours">00</span><br>Hours</div>
+                            <div><span id="minutes">00</span><br>Minutes</div>
+                            <div><span id="seconds">00</span><br>Seconds</div>
+                        </div>
+                    </div>
+                    
+                    <button class="share-btn" onclick="shareSite()">
+                        <i class="fas fa-share-alt"></i> Save This Memory
+                    </button>
+                </div>
+            </div>
+        </section>
         
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.1);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.2);
-        }
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="prevStep()">← Back</button>
+            <div class="dots">
+                <span class="dot active" onclick="goToStep(1)"></span>
+                <span class="dot" onclick="goToStep(2)"></span>
+                <span class="dot" onclick="goToStep(3)"></span>
+                <span class="dot" onclick="goToStep(4)"></span>
+                <span class="dot" onclick="goToStep(5)"></span>
+            </div>
+            <button class="nav-btn" onclick="nextStep()">Next →</button>
+        </div>
         
-        .heart {
-            font-size: 80px;
-            animation: heartbeat 1s infinite;
-            margin-bottom: 20px;
-        }
-        
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-        
-        .message {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 30px 0;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        .love-btn {
-            background: linear-gradient(135deg, #ff2e63, #ff8ba0);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-        
-        .love-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255,46,99,0.4);
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        #love-message {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 15px;
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+        <!-- Music Player -->
+        <div class="music-player">
+            <button onclick="toggleMusic()" id="music-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <p>Our Song: "Perfect" by Ed Sheeran</p>
+            <audio id="bg-music" loop>
+                <source src="https://assets.codepen.io/1468070/Perfect+Instrumental.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+    
+    <!-- Confetti Container -->
+    <div id="confetti"></div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
