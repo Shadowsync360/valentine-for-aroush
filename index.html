@@ -3,417 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Bhallu ❤️ - Aroush's Valentine Surprise</title>
+    <title>For Aroush 💖 | Valentine Surprise</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
-    <meta name="theme-color" content="#FF2E63">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="floating-hearts"></div>
-    <div class="sparkles"></div>
-    
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="heart-loader">
-            <div class="heart-part"></div>
-            <div class="heart-part"></div>
+    <!-- Simple Test Version -->
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>For My Aroush 💝</h1>
+        <p class="subtitle">My Bhallu, my Mari Jan</p>
+        
+        <div class="message">
+            <p>This is a test to make sure GitHub Pages is working!</p>
+            <p>If you can see this, the site is live! 🎉</p>
         </div>
-        <p class="loading-text">Preparing something special for You...</p>
-    </div>
-
-    <!-- Main Container -->
-    <div class="container" id="main-container">
-        <!-- STEP 1: The Grand Invitation -->
-        <section class="step active" id="step1">
-            <div class="envelope">
-                <div class="envelope-flap"></div>
-                <div class="envelope-body">
-                    <div class="letter">
-                        <div class="letter-content">
-                            <h1 class="animated-title">My Dearest <span class="highlight">Aroush</span>,</h1>
-                            <p class="letter-text">There's something I've been wanting to ask you...</p>
-                            <div class="question-box">
-                                <h2><i class="fas fa-heart"></i> Will you be my Valentine? <i class="fas fa-heart"></i></h2>
-                                <p class="sub-question">...not just for this day, but for every day after?</p>
-                                
-                                <div class="response-buttons">
-                                    <button class="btn-yes" id="yes-btn">
-                                        <span class="btn-text">YES! Absolutely ❤️</span>
-                                        <div class="sparkle-effect"></div>
-                                    </button>
-                                    <button class="btn-no" id="no-btn">
-                                        <span class="btn-text">Hmm, let me think...</span>
-                                    </button>
-                                </div>
-                                
-                                <div class="secret-message" id="secret-no-message">
-                                    <p>Really, Bhallu? 😢 <br> Try again, my love...</p>
-                                </div>
-                            </div>
-                            
-                            <div class="bear-hint">
-                                <div class="bear-icon">🐻</div>
-                                <p>P.S. You'll always be my <span class="bear-nickname">Bhallu</span> 🍯</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- STEP 2: The Confession Timeline -->
-        <section class="step" id="step2">
-            <div class="timeline-container">
-                <h1 class="section-title"><i class="fas fa-history"></i> Our Love Story</h1>
-                <p class="section-subtitle">From a silent crush to the best thing that ever happened</p>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024</div>
-                        <div class="timeline-content">
-                            <h3>The Silent Crush Begins 💫</h3>
-                            <p>"Every day in class, I'd steal glances at you, wondering if you'd ever notice me. My heart raced each time you smiled."</p>
-                            <div class="memory-tag">Secret Admiration Phase</div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">Dec 5, 2025<br>8:53 AM</div>
-                        <div class="timeline-content">
-                            <h3>The Message That Changed Everything 📱</h3>
-                            <p>The exact moment your message arrived: <strong>"Hey..."</strong><br>
-                            My hands were shaking as I read it. Little did I know it was the beginning of us.</p>
-                            <div class="clock-animation">
-                                <div class="clock-hand hour-hand"></div>
-                                <div class="clock-hand minute-hand"></div>
-                                <div class="clock-center"></div>
-                                <span class="clock-time">8:53</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">First Confession</div>
-                        <div class="timeline-content">
-                            <h3>When Hearts Spoke Aloud 💌</h3>
-                            <p>That magical moment when we both said what we'd been feeling for so long. No more hiding, just pure honesty and love.</p>
-                            <div class="chat-bubble mine">"I've liked you for so long..."</div>
-                            <div class="chat-bubble hers">"I like you too, more than you know"</div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">First "I Love You"</div>
-                        <div class="timeline-content">
-                            <h3>Those Three Magical Words ✨</h3>
-                            <p>The first time you called me <span class="special-text">"mera bacha"</span> - my heart melted completely. I knew then this was forever.</p>
-                            <button class="fireworks-btn" id="fireworks-btn">Relive the Moment!</button>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">Present Day</div>
-                        <div class="timeline-content">
-                            <h3>Three Months of Pure Bliss 🌈</h3>
-                            <p>Every day with you feels like a blessing. From classmates to soulmates - this journey has been worth every moment of waiting.</p>
-                            <div class="love-meter">
-                                <div class="meter-fill" id="meter-fill"></div>
-                                <span class="meter-text">How much I love you: <span id="love-percent">100%</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="next-step-btn" id="to-step3">Continue to My Promise <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </section>
-
-        <!-- STEP 3: The Love Letter -->
-        <section class="step" id="step3">
-            <div class="letter-container">
-                <div class="vintage-paper">
-                    <div class="paper-texture">
-                        <div class="letter-header">
-                            <h1><i class="fas fa-feather-alt"></i> My Heart in Words</h1>
-                            <p class="letter-date">February 14, 2025</p>
-                        </div>
-                        
-                        <div class="handwritten-text">
-                            <p class="greeting">My Dearest Aroush,</p>
-                            
-                            <p>If someone told me two years ago that the girl I secretly admired in class would become the most important person in my life, I wouldn't have believed them. Yet here we are.</p>
-                            
-                            <p>From that first message at 8:53 AM on December 5th, my world changed colors. You brought light where there was shadow, joy where there was uncertainty.</p>
-                            
-                            <p>I want you to know something, <span class="nickname">Bhallu</span> (yes, my cute bear 🐻): <strong>I'm not perfect</strong>. I might forget things sometimes, or say the wrong words, but what I'll never forget is how much you mean to me. What I'll always say, even when words fail, is that I love you.</p>
-                            
-                            <p>I promise you:</p>
-                            
-                            <ul class="promises-list">
-                                <li><i class="fas fa-heart promise-icon"></i> I will <strong>always</strong> support your dreams, even the crazy ones</li>
-                                <li><i class="fas fa-heart promise-icon"></i> I will be there at 3 AM when you need to talk</li>
-                                <li><i class="fas fa-heart promise-icon"></i> I will remember the little things that make you smile</li>
-                                <li><i class="fas fa-heart promise-icon"></i> I will defend you, cherish you, and choose you every single day</li>
-                                <li><i class="fas fa-heart promise-icon"></i> I will work every day to deserve someone as amazing as you</li>
-                            </ul>
-                            
-                            <p>You call me "mera bacha" and in your arms, I feel like I've found home. I want to be your safe place, your biggest fan, your partner in every adventure.</p>
-                            
-                            <p>This Valentine's Day isn't about one day of romance. It's about celebrating <strong>every day</strong> since you came into my life. It's about the next 3 months, 3 years, 30 years I want to spend loving you.</p>
-                            
-                            <div class="signature-section">
-                                <p class="closing">With all my heart, now and forever,</p>
-                                <div class="signature">
-                                    <div class="signature-line"></div>
-                                    <p class="signature-name">Your Bacha ❤️</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="rose-animation">
-                            <div class="rose">
-                                <div class="rose-petal"></div>
-                                <div class="rose-petal"></div>
-                                <div class="rose-petal"></div>
-                                <div class="rose-stem"></div>
-                                <div class="rose-leaf"></div>
-                            </div>
-                            <p class="rose-text">This rose will never wilt, just like my love for you</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="letter-controls">
-                    <button class="btn-music" id="music-toggle">
-                        <i class="fas fa-music"></i> <span>Play Our Song</span>
-                    </button>
-                    <button class="next-step-btn" id="to-step4">
-                        Discover More Surprises <i class="fas fa-gift"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- STEP 4: Memory Gallery & Interactive -->
-        <section class="step" id="step4">
-            <div class="gallery-container">
-                <h1 class="section-title"><i class="fas fa-images"></i> Our Memory Lane</h1>
-                <p class="section-subtitle">Every moment with you is a treasure I keep in my heart</p>
-                
-                <div class="memory-wall">
-                    <div class="memory-frame" data-memory="1">
-                        <div class="frame-content">
-                            <div class="memory-img" style="background: linear-gradient(135deg, #ffafcc, #ffc8dd);">
-                                <i class="fas fa-heart memory-icon"></i>
-                            </div>
-                            <div class="memory-caption">
-                                <h4>The First Text</h4>
-                                <p>"Hey..." - the beginning of everything</p>
-                            </div>
-                            <div class="memory-date">12/5/2025</div>
-                        </div>
-                    </div>
-                    
-                    <div class="memory-frame" data-memory="2">
-                        <div class="frame-content">
-                            <div class="memory-img" style="background: linear-gradient(135deg, #a2d2ff, #bde0fe);">
-                                <i class="fas fa-star memory-icon"></i>
-                            </div>
-                            <div class="memory-caption">
-                                <h4>First "I Love You"</h4>
-                                <p>When you first called me "mera bacha"</p>
-                            </div>
-                            <div class="memory-date">Our Special Day</div>
-                        </div>
-                    </div>
-                    
-                    <div class="memory-frame" data-memory="3">
-                        <div class="frame-content">
-                            <div class="memory-img" style="background: linear-gradient(135deg, #ffafbd, #ffc3a0);">
-                                <i class="fas fa-laugh-beam memory-icon"></i>
-                            </div>
-                            <div class="memory-caption">
-                                <h4>Inside Jokes</h4>
-                                <p>All those moments only we understand</p>
-                            </div>
-                            <div class="memory-date">Every Day</div>
-                        </div>
-                    </div>
-                    
-                    <div class="memory-frame" data-memory="4">
-                        <div class="frame-content">
-                            <div class="memory-img" style="background: linear-gradient(135deg, #cdb4db, #ffc8dd);">
-                                <i class="fas fa-bear memory-icon"></i>
-                            </div>
-                            <div class="memory-caption">
-                                <h4>Bhallu Moments</h4>
-                                <p>My cute bear with a heart of gold</p>
-                            </div>
-                            <div class="memory-date">Always</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Add more memory frames as needed -->
-                </div>
-                
-                <div class="interactive-section">
-                    <h3><i class="fas fa-gamepad"></i> Our Love Adventure</h3>
-                    <div class="love-quest">
-                        <div class="quest-item" id="quest1">
-                            <div class="quest-icon">🐻</div>
-                            <p>Why do I call you Bhallu?</p>
-                            <button class="quest-reveal" data-answer="Because you're my strong yet cuddly bear who I want to protect forever">Reveal</button>
-                        </div>
-                        <div class="quest-item" id="quest2">
-                            <div class="quest-icon">❤️</div>
-                            <p>What's my favorite thing about you?</p>
-                            <button class="quest-reveal" data-answer="Your smile that makes my whole day better, and how you care so deeply">Reveal</button>
-                        </div>
-                        <div class="quest-item" id="quest3">
-                            <div class="quest-icon">🌟</div>
-                            <p>My dream with you?</p>
-                            <button class="quest-reveal" data-answer="To build a lifetime of memories, grow together, and always choose each other">Reveal</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="cat-gallery">
-                    <h3><i class="fas fa-cat"></i> Because you love cute things!</h3>
-                    <div class="cats-container">
-                        <div class="cat-item">😻</div>
-                        <div class="cat-item">🐈</div>
-                        <div class="cat-item">🐱</div>
-                        <div class="cat-item">😸</div>
-                        <div class="cat-item">🐾</div>
-                    </div>
-                    <p class="cat-message">Just like these kittens, you make my heart purr!</p>
-                </div>
-                
-                <button class="next-step-btn" id="to-step5">
-                    Final Surprise Awaits! <i class="fas fa-lock"></i>
-                </button>
-            </div>
-        </section>
-
-        <!-- STEP 5: Final Surprise -->
-        <section class="step" id="step5">
-            <div class="final-surprise">
-                <div class="surprise-box">
-                    <div class="lock-animation">
-                        <div class="lock-body">
-                            <div class="lock-shackle"></div>
-                            <div class="lock-keyhole"></div>
-                        </div>
-                        <p class="lock-text">Special Access Required</p>
-                    </div>
-                    
-                    <h1 class="surprise-title">One Last Secret, My Love</h1>
-                    <p class="surprise-subtitle">Enter our special code to unlock the final message</p>
-                    
-                    <div class="password-input">
-                        <input type="text" id="password" placeholder="Hint: Bhallu or 0512" maxlength="10">
-                        <button id="unlock-btn"><i class="fas fa-key"></i> Unlock My Heart</button>
-                    </div>
-                    
-                    <div class="hints">
-                        <p class="hint"><i class="fas fa-lightbulb"></i> Hint 1: My cute nickname for you</p>
-                        <p class="hint"><i class="fas fa-lightbulb"></i> Hint 2: The day everything began (DDMM)</p>
-                    </div>
-                    
-                    <div class="final-message" id="finalMessage">
-                        <div class="message-content">
-                            <h2><i class="fas fa-gem"></i> For My Aroush</h2>
-                            <p class="final-text">
-                                My dearest Bhallu,<br><br>
-                                If you're reading this, know that you've unlocked the deepest chambers of my heart. 
-                                Every part of this website was crafted with you in mind - from the first "Will you be my Valentine?" 
-                                to this very moment.<br><br>
-                                
-                                <strong>You are my greatest surprise.</strong> The one I didn't see coming but can't imagine living without. 
-                                The classmate who became my confidante, the crush who became my forever.<br><br>
-                                
-                                On this Valentine's Day, I want to renew my promise: I will love you through every season, 
-                                support every dream, cherish every laugh, and hold you through every tear.<br><br>
-                                
-                                Thank you for choosing me. Thank you for loving me. Thank you for being you.<br><br>
-                                
-                                This isn't just a Valentine's gift. It's a testament to what we have and what we're building together.<br><br>
-                                
-                                With all the love in the universe,
-                            </p>
-                            <div class="eternal-love">
-                                <div class="infinity-symbol">∞</div>
-                                <p>Your Bacha, Forever & Always</p>
-                            </div>
-                            
-                            <div class="countdown-final">
-                                <h3><i class="fas fa-clock"></i> Countdown to Forever</h3>
-                                <div class="countdown-box">
-                                    <div class="countdown-item">
-                                        <span id="cd-days">000</span>
-                                        <small>Days</small>
-                                    </div>
-                                    <div class="countdown-item">
-                                        <span id="cd-hours">00</span>
-                                        <small>Hours</small>
-                                    </div>
-                                    <div class="countdown-item">
-                                        <span id="cd-minutes">00</span>
-                                        <small>Minutes</small>
-                                    </div>
-                                    <div class="countdown-item">
-                                        <span id="cd-seconds">00</span>
-                                        <small>Seconds</small>
-                                    </div>
-                                </div>
-                                <p class="countdown-text">Of loving you more than yesterday, less than tomorrow</p>
-                            </div>
-                        </div>
-                        
-                        <button class="share-btn" id="share-btn">
-                            <i class="fas fa-share-alt"></i> Save This Memory
-                        </button>
-                        
-                        <div class="credits">
-                            <p>Made with <i class="fas fa-heart pulse"></i> for Aroush</p>
-                            <p class="small">© 2025 - Your Bacha's Digital Love Letter</p>
-                            <p class="small">Refresh on Feb 14 for a special Valentine's surprise!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Navigation Dots -->
-    <div class="nav-dots">
-        <span class="dot active" data-step="1"></span>
-        <span class="dot" data-step="2"></span>
-        <span class="dot" data-step="3"></span>
-        <span class="dot" data-step="4"></span>
-        <span class="dot" data-step="5"></span>
-    </div>
-
-    <!-- Music Player -->
-    <div class="music-player">
-        <audio id="bg-music" loop>
-            <source src="https://assets.codepen.io/1468070/Perfect+Instrumental.mp3" type="audio/mpeg">
-        </audio>
-        <button id="play-music">
-            <i class="fas fa-play"></i>
+        
+        <button onclick="showLove()" class="love-btn">
+            Click for Love! 💖
         </button>
-        <div class="music-info">"Perfect" - Ed Sheeran (Our Song)</div>
+        
+        <div id="love-message" class="hidden">
+            <p>I love you more than words can say!</p>
+            <p>From your Bacha ❤️</p>
+        </div>
     </div>
-
-    <!-- Fireworks Container -->
-    <div class="fireworks-container" id="fireworks"></div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="script.js"></script>
+    
+    <script>
+        function showLove() {
+            document.getElementById('love-message').classList.remove('hidden');
+            document.querySelector('.love-btn').textContent = 'I Love You Too! 💕';
+            
+            // Create hearts
+            for(let i=0; i<20; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+                heart.style.opacity = 0.5;
+                heart.style.zIndex = '-1';
+                heart.style.pointerEvents = 'none';
+                document.body.appendChild(heart);
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff2e63, #1a1a2e);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .heart {
+            font-size: 80px;
+            animation: heartbeat 1s infinite;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .message {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .love-btn {
+            background: linear-gradient(135deg, #ff2e63, #ff8ba0);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .love-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,46,99,0.4);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #love-message {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </body>
 </html>
