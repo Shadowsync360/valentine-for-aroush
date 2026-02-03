@@ -730,7 +730,7 @@
         }
 
         /* ===== NEW: MESSAGE DECODER ===== */
-              .message-decoder {
+        .message-decoder {
             max-width: 600px;
             margin: 50px auto;
             padding: 30px;
@@ -1115,7 +1115,8 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
-  <!-- NEW: VIRTUAL ROSE -->
+                
+                <!-- NEW: VIRTUAL ROSE -->
                 <div class="virtual-rose">
                     <h3>🌹 Virtual Rose for You</h3>
                     <div class="rose-container">
@@ -1439,7 +1440,8 @@
                     step.style.opacity = '0';
                     step.style.transform = 'translateY(30px)';
                 });
-                   // Update dots
+                
+                // Update dots
                 dots.forEach(dot => dot.classList.remove('active'));
                 dots[stepNum - 1].classList.add('active');
                 
@@ -1825,7 +1827,8 @@
                 const content = document.documentElement.outerHTML;
                 const blob = new Blob([content], { type: 'text/html' });
                 const url = URL.createObjectURL(blob);
-      // Create download link
+                
+                // Create download link
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = 'Aroush-Valentine-Surprise.html';
