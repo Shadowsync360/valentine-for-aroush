@@ -1647,6 +1647,21 @@
                 <p>Our journey continues...</p>
             </div>
         </div>
+        <!-- Replace Slide 4 with Video -->
+<div class="swiper-slide video-slide">
+    <div class="video-container">
+        <video controls muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID" type="video/mp4">
+        </video>
+        <div class="video-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; padding: 20px;">
+            <button onclick="this.nextElementSibling.play()" style="background: var(--primary-pink); color: white; border: none; width: 60px; height: 60px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; margin-bottom: 15px;">
+                <i class="fas fa-play"></i>
+            </button>
+            <h3 style="margin-bottom: 10px;">Video Message</h3>
+            <p>A personal message for my Bhallu</p>
+        </div>
+    </div>
+</div>
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-next"></div>
