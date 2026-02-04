@@ -190,59 +190,6 @@
             position: relative;
             z-index: 3;
         }
-/* DELETE THIS CSS */
-.music-player {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-#play-music {
-    background: var(--primary-pink);
-    color: var(--white);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-#play-music:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(255, 46, 99, 0.5);
-}
-
-.music-info {
-    color: var(--white);
-    font-size: 0.9rem;
-    white-space: nowrap;
-}
-
-@media (max-width: 768px) {
-    .music-player {
-        bottom: 10px;
-        left: 10px;
-        padding: 10px 15px;
-    }
-    
-    .music-info {
-        display: none;
-    }
-}
         @media (max-width: 768px) {
             .letter {
                 padding: 25px;
@@ -1828,79 +1775,42 @@
 
 
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    // ===== VALENTINE WEBSITE SCRIPT =====
     
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
-    <script>
-        // ===== VALENTINE WEBSITE SCRIPT =====
-        // FIX: Music autoplay workaround
-document.addEventListener('DOMContentLoaded', function() {
-    const bgMusic = document.getElementById('bg-music');
-    const playMusicBtn = document.getElementById('play-music');
-    
-    // First click anywhere on page enables audio
-    document.body.addEventListener('click', function enableAudio() {
-        bgMusic.volume = 0.5;
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('💖 Starting Valentine Experience...');
         
-        // Try to play
-        bgMusic.play().then(() => {
-            console.log('Music playing');
-            playMusicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        }).catch(e => {
-            console.log('Need user interaction');
-        });
+        // Elements
+        const steps = document.querySelectorAll('.step');
+        const dots = document.querySelectorAll('.dot');
+        const loader = document.getElementById('loader');
+        const mainContainer = document.getElementById('main-container');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const toStep2Btn = document.getElementById('to-step2');
+        const toStep3Btn = document.getElementById('to-step3');
+        const toStep4Btn = document.getElementById('to-step4');
+        const toStep5Btn = document.getElementById('to-step5');
+        const calculateLoveBtn = document.getElementById('calculate-love');
+        const unlockBtn = document.getElementById('unlock-btn');
+        const giftRoseBtn = document.getElementById('gift-rose-btn');
+        const decodeBtn = document.getElementById('decode-btn');
+        const downloadPdfBtn = document.getElementById('download-pdf');
+        const savePageBtn = document.getElementById('save-page');
+        const shareBtn = document.getElementById('share-btn');
+        const revealBtn = document.getElementById('reveal-bhallu');
         
-        // Remove listener after first click
-        document.body.removeEventListener('click', enableAudio);
-    }, { once: true });
-    
-    // Play/Pause button
-    playMusicBtn.addEventListener('click', function() {
-        if (bgMusic.paused) {
-            bgMusic.play();
-            this.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            bgMusic.pause();
-            this.innerHTML = '<i class="fas fa-play"></i>';
-        }
-    });
-});
+        let currentStep = 1;
+        let noClickCount = 0;
+        let swiper = null;
         
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('💖 Starting Aroush\'s Valentine Experience...');
-            
-            // Elements
-            const steps = document.querySelectorAll('.step');
-            const dots = document.querySelectorAll('.dot');
-            const loader = document.getElementById('loader');
-            const mainContainer = document.getElementById('main-container');
-            const bgMusic = document.getElementById('bg-music');
-            const playMusicBtn = document.getElementById('play-music');
-            const yesBtn = document.getElementById('yes-btn');
-            const noBtn = document.getElementById('no-btn');
-            const secretNoMessage = document.getElementById('secret-no-message');
-            const toStep2Btn = document.getElementById('to-step2');
-            const toStep3Btn = document.getElementById('to-step3');
-            const toStep4Btn = document.getElementById('to-step4');
-            const toStep5Btn = document.getElementById('to-step5');
-            const unlockBtn = document.getElementById('unlock-btn');
-            const calculateLoveBtn = document.getElementById('calculate-love');
-            const giftRoseBtn = document.getElementById('gift-rose-btn');
-            const decodeBtn = document.getElementById('decode-btn');
-            const downloadPdfBtn = document.getElementById('download-pdf');
-            const savePageBtn = document.getElementById('save-page');
-            const shareBtn = document.getElementById('share-btn');
-            
-            let currentStep = 1;
-            let noClickCount = 0;
-            let isMusicPlaying = false;
-            let swiper = null;
-            
-            // Initialize Swiper Slideshow
-            function initSwiper() {
+        // Initialize Swiper
+        function initSwiper() {
+            if (document.querySelector('.swiper')) {
                 swiper = new Swiper('.swiper', {
                     direction: 'horizontal',
                     loop: true,
@@ -1916,255 +1826,203 @@ document.addEventListener('DOMContentLoaded', function() {
                         delay: 3000,
                         disableOnInteraction: false,
                     },
-                    effect: 'coverflow',
-                    grabCursor: true,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    coverflowEffect: {
-                        rotate: 20,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1,
-                        slideShadows: true,
-                    },
                 });
+                console.log('✅ Swiper initialized');
             }
-            
-            // Initialize
-            function init() {
+        }
+        
+        // Initialize
+        function init() {
+            setTimeout(() => {
+                loader.style.opacity = '0';
                 setTimeout(() => {
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                        mainContainer.style.display = 'block';
-                        
-                        // Create floating hearts
-                        createFloatingHearts();
-                        
-                        // Show step 1
-                        showStep(1);
-                        
-                        // Initialize Swiper
-                        initSwiper();
-                        
-                        // Start auto-playing music (Sahiba by Ritviz)
-                        setTimeout(initAudio, 1000);
-                        
-                    }, 500);
-                }, 1500);
-                
-                // Setup event listeners
-                setupEventListeners();
+                    loader.style.display = 'none';
+                    mainContainer.style.display = 'block';
+                    
+                    createFloatingHearts();
+                    showStep(1);
+                    initSwiper();
+                    
+                }, 500);
+            }, 1500);
+            
+            setupEventListeners();
+        }
+        
+        // ===== EVENT LISTENERS =====
+        function setupEventListeners() {
+            // Yes button
+            if (yesBtn) {
+                yesBtn.addEventListener('click', handleYesClick);
+                console.log('✅ Yes button listener added');
             }
             
-            // Event Listeners
-            // Bhallu reveal button
-const revealBtn = document.getElementById('reveal-bhallu');
-if (revealBtn) {
-    revealBtn.addEventListener('click', revealBhalluStory);
-}
-// Reveal Bhallu Story
-function revealBhalluStory() {
-    const revealBtn = document.getElementById('reveal-bhallu');
-    const secretReason = document.getElementById('secret-reason');
-    
-    // Create confetti
-    createConfetti(50);
-    
-    // Change button
-    revealBtn.innerHTML = '<i class="fas fa-unlock"></i> Secret Revealed!';
-    revealBtn.classList.add('unlocked');
-    revealBtn.disabled = true;
-    
-    // Show secret reason
-    secretReason.style.display = 'block';
-    
-    // Animate each reason item
-    const reasonItems = document.querySelectorAll('.reason-item');
-    reasonItems.forEach((item, index) => {
-        setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateX(0)';
-        }, index * 300);
-    });
-    
-    // Scroll to secret if needed
-    setTimeout(() => {
-        secretReason.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-    }, 500);
-}
-            function setupEventListeners() {
-                // Yes button
-                yesBtn.addEventListener('click', handleYesClick);
-                
-                // No button - COMPLETELY FIXED
-                noBtn.addEventListener('click', function(e) {
-                    handleNoClick(e);
-                });
-                
-                // Music button
-                playMusicBtn.addEventListener('click', toggleMusic);
-                
-                // Next step buttons
+            // No button
+            if (noBtn) {
+                noBtn.addEventListener('click', handleNoClick);
+                console.log('✅ No button listener added');
+            }
+            
+            // Next step buttons - CRITICAL FIX
+            if (toStep2Btn) {
                 toStep2Btn.addEventListener('click', () => showStep(2));
+                console.log('✅ to-step2 listener added');
+            }
+            
+            if (toStep3Btn) {
                 toStep3Btn.addEventListener('click', () => showStep(3));
+                console.log('✅ to-step3 listener added');
+            }
+            
+            if (toStep4Btn) {
                 toStep4Btn.addEventListener('click', () => showStep(4));
+                console.log('✅ to-step4 listener added');
+            }
+            
+            if (toStep5Btn) {
                 toStep5Btn.addEventListener('click', () => showStep(5));
-                
-                // Unlock button
+                console.log('✅ to-step5 listener added');
+            }
+            
+            // Love calculator
+            if (calculateLoveBtn) {
+                calculateLoveBtn.addEventListener('click', calculateLove);
+                console.log('✅ Love calculator listener added');
+            }
+            
+            // Unlock button
+            if (unlockBtn) {
                 unlockBtn.addEventListener('click', unlockFinalMessage);
-                
-                // Love calculator
-                if (calculateLoveBtn) {
-                    calculateLoveBtn.addEventListener('click', calculateLove);
-                }
-                
-                // Gift rose button
-                if (giftRoseBtn) {
-                    giftRoseBtn.addEventListener('click', giftRose);
-                }
-                
-                // Decode button
-                if (decodeBtn) {
-                    decodeBtn.addEventListener('click', decodeMessage);
-                }
-                
-                // Download buttons
-                if (downloadPdfBtn) {
-                    downloadPdfBtn.addEventListener('click', downloadPDF);
-                }
-                if (savePageBtn) {
-                    savePageBtn.addEventListener('click', savePage);
-                }
-                
-                // Share button
-                if (shareBtn) {
-                    shareBtn.addEventListener('click', shareSite);
-                }
-                
-                // Password input enter key
-                document.getElementById('password').addEventListener('keypress', function(e) {
+                console.log('✅ Unlock button listener added');
+            }
+            
+            // Gift rose button
+            if (giftRoseBtn) {
+                giftRoseBtn.addEventListener('click', giftRose);
+            }
+            
+            // Decode button
+            if (decodeBtn) {
+                decodeBtn.addEventListener('click', decodeMessage);
+            }
+            
+            // Download buttons
+            if (downloadPdfBtn) {
+                downloadPdfBtn.addEventListener('click', downloadPDF);
+            }
+            if (savePageBtn) {
+                savePageBtn.addEventListener('click', savePage);
+            }
+            
+            // Share button
+            if (shareBtn) {
+                shareBtn.addEventListener('click', shareSite);
+            }
+            
+            // Bhallu reveal button
+            if (revealBtn) {
+                revealBtn.addEventListener('click', revealBhalluStory);
+            }
+            
+            // Password input enter key
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') unlockFinalMessage();
                 });
-                
-                // Secret code input enter key
-                document.getElementById('secret-code')?.addEventListener('keypress', function(e) {
+            }
+            
+            // Secret code input enter key
+            const secretCodeInput = document.getElementById('secret-code');
+            if (secretCodeInput) {
+                secretCodeInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') decodeMessage();
                 });
-                
-                // Enable audio on first click
-                document.body.addEventListener('click', function initAudioFirst() {
-                    bgMusic.volume = 0.001;
-                    bgMusic.play().then(() => {
-                        bgMusic.pause();
-                        bgMusic.currentTime = 0;
-                        bgMusic.volume = 0.5;
-                    }).catch(e => console.log('Audio init'));
-                    
-                    document.body.removeEventListener('click', initAudioFirst);
-                }, { once: true });
+            }
+        }
+        
+        // ===== STEP NAVIGATION =====
+        window.goToStep = function(stepNum) {
+            showStep(stepNum);
+        };
+        
+        function showStep(stepNum) {
+            console.log(`Changing to step ${stepNum}`);
+            if (stepNum < 1 || stepNum > 5) return;
+            
+            // Hide all steps
+            steps.forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[stepNum - 1]) {
+                dots[stepNum - 1].classList.add('active');
             }
             
-            // Step Navigation with Scroll to Top Fix
-            window.goToStep = function(stepNum) {
-                showStep(stepNum);
-            };
-            
-            function showStep(stepNum) {
-                if (stepNum < 1 || stepNum > 5) return;
-                
-                // Hide all steps
-                steps.forEach(step => {
-                    step.classList.remove('active');
-                    step.style.opacity = '0';
-                    step.style.transform = 'translateY(30px)';
-                });
-                
-                // Update dots
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[stepNum - 1].classList.add('active');
-                
-                // Show selected step
-                const targetStep = document.getElementById(`step${stepNum}`);
+            // Show selected step
+            const targetStep = document.getElementById(`step${stepNum}`);
+            if (targetStep) {
                 targetStep.classList.add('active');
                 
-                setTimeout(() => {
-                    targetStep.style.opacity = '1';
-                    targetStep.style.transform = 'translateY(0)';
-                    
-                    // FIX: Scroll to top of the step
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Also scroll container to top
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                }, 50);
-                
-                currentStep = stepNum;
-                
-                // Step-specific actions
-                if (stepNum === 2) {
-                    animateLoveMeter();
-                }
-                if (stepNum === 3 && swiper) {
-                    swiper.update();
-                }
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
             
-            // Yes button click
-            function handleYesClick() {
-                // Create confetti
-                createConfetti(100);
-                
-                // Button animation
-                this.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 300);
-                
-                // Move to step 2
-                setTimeout(() => {
-                    showStep(2);
-                }, 1000);
-            }
+            currentStep = stepNum;
             
-            // No button click - COMPLETELY FIXED
-            function handleNoClick(e) {
-                e.stopPropagation();
-                noClickCount++;
-                
-                // Get button dimensions
-                const btnWidth = noBtn.offsetWidth;
-                const btnHeight = noBtn.offsetHeight;
-                
-                // Calculate safe area (avoiding edges and envelope)
-                const safeMinX = 50;
-                const safeMaxX = window.innerWidth - btnWidth - 50;
-                const safeMinY = 150; // Below envelope
-                const safeMaxY = window.innerHeight - btnHeight - 100;
-                
-                // Generate random position within safe area
-                const randomX = Math.max(safeMinX, Math.min(safeMaxX, Math.random() * safeMaxX));
-                const randomY = Math.max(safeMinY, Math.min(safeMaxY, Math.random() * safeMaxY));
-                
-                // Apply new position with high z-index
-                noBtn.style.position = 'fixed';
-                noBtn.style.left = `${randomX}px`;
-                noBtn.style.top = `${randomY}px`;
-                noBtn.style.zIndex = '9999';
-                
-                // Show message
+            // Step-specific actions
+            if (stepNum === 2) {
+                setTimeout(animateLoveMeter, 500);
+            }
+        }
+        
+        // ===== YES BUTTON =====
+        function handleYesClick() {
+            createConfetti(100);
+            
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
+            
+            setTimeout(() => {
+                showStep(2);
+            }, 1000);
+        }
+        
+        // ===== NO BUTTON =====
+        function handleNoClick(e) {
+            e.stopPropagation();
+            noClickCount++;
+            
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            
+            const safeMinX = 50;
+            const safeMaxX = window.innerWidth - btnWidth - 50;
+            const safeMinY = 150;
+            const safeMaxY = window.innerHeight - btnHeight - 100;
+            
+            const randomX = Math.max(safeMinX, Math.min(safeMaxX, Math.random() * safeMaxX));
+            const randomY = Math.max(safeMinY, Math.min(safeMaxY, Math.random() * safeMaxY));
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+            noBtn.style.zIndex = '9999';
+            
+            const secretNoMessage = document.getElementById('secret-no-message');
+            if (secretNoMessage) {
                 secretNoMessage.style.display = 'block';
                 secretNoMessage.style.zIndex = '9998';
                 
                 const messages = [
-                    "Really, Bhallu? 😢 Try again, my love...",
+                    "Really, Aroush? 😢 Try again, my love...",
                     "Are you sure? 🥺 I'll keep asking!",
                     "You're breaking my heart! 💔 Just kidding...",
                     "Okay, I see how it is! 😤 (jk, try again)",
@@ -2174,7 +2032,6 @@ function revealBhalluStory() {
                 const messageIndex = Math.min(noClickCount - 1, messages.length - 1);
                 secretNoMessage.innerHTML = `<p>${messages[messageIndex]}</p>`;
                 
-                // Shake animation
                 secretNoMessage.animate([
                     { transform: 'translateX(0)' },
                     { transform: 'translateX(10px)' },
@@ -2184,73 +2041,50 @@ function revealBhalluStory() {
                     duration: 300,
                     iterations: 2
                 });
-                
-                // Make button smaller but not too small
-                const scale = Math.max(0.8, 1 - (noClickCount * 0.08));
-                noBtn.style.transform = `scale(${scale})`;
             }
             
-            // MUSIC SYSTEM - SAHIBA BY RITVIZ
-            function initAudio() {
-                // Try to play music automatically with low volume
-                bgMusic.volume = 0.3;
-                
-                const playPromise = bgMusic.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        console.log('✅ Music auto-playing successfully');
-                        playMusicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                        isMusicPlaying = true;
-                        
-                        // Fade in volume
-                        let volume = 0.3;
-                        const fadeIn = setInterval(() => {
-                            volume += 0.01;
-                            bgMusic.volume = Math.min(volume, 0.5);
-                            if (volume >= 0.5) {
-                                clearInterval(fadeIn);
-                            }
-                        }, 100);
-                        
-                    }).catch(error => {
-                        console.log('Auto-play failed:', error);
-                        // Set button to show it needs interaction
-                        playMusicBtn.innerHTML = '<i class="fas fa-play"></i>';
-                        playMusicBtn.title = "Click to play 'Sahiba' by Ritviz";
-                    });
-                }
-            }
+            const scale = Math.max(0.8, 1 - (noClickCount * 0.08));
+            noBtn.style.transform = `scale(${scale})`;
+        }
+        
+        // ===== LOVE CALCULATOR =====
+        function calculateLove() {
+            console.log('Love calculator clicked');
+            const name1 = document.getElementById('name1')?.value || 'Hussain';
+            const name2 = document.getElementById('name2')?.value || 'Aroush';
             
-            function toggleMusic() {
-                if (isMusicPlaying) {
-                    bgMusic.pause();
-                    playMusicBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    isMusicPlaying = false;
-                } else {
-                    bgMusic.play().then(() => {
-                        playMusicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                        isMusicPlaying = true;
-                    }).catch(error => {
-                        console.log('Manual play failed:', error);
-                        // Show user-friendly message
-                        alert('To play "Sahiba" by Ritviz:\n1. Click anywhere on the page first\n2. Then click the music button again\n\nSome browsers require interaction before playing music.');
-                        playMusicBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    });
-                }
-                
-                // Button animation
-                playMusicBtn.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    playMusicBtn.style.transform = 'scale(1)';
-                }, 300);
-            }
+            let score = 95 + Math.floor(Math.random() * 6);
             
-            // Love meter animation
-            function animateLoveMeter() {
-                const meterFill = document.getElementById('meter-fill');
-                const lovePercent = document.getElementById('love-percent');
+            const messages = [
+                "Perfect Match! Soulmates forever! 💖",
+                "Made for each other! True love! ❤️",
+                "Destined to be together! 💫",
+                "A love story written in the stars! 🌟",
+                "The perfect pair! Meant to be! 💕"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            const resultDiv = document.getElementById('love-result');
+            const percentageDiv = document.getElementById('love-percentage');
+            const messageDiv = document.getElementById('love-message');
+            
+            if (resultDiv && percentageDiv && messageDiv) {
+                percentageDiv.textContent = `${score}%`;
+                messageDiv.textContent = randomMessage;
+                resultDiv.style.display = 'block';
                 
+                createConfetti(30);
+                console.log('Love calculator result shown');
+            }
+        }
+        
+        // ===== LOVE METER =====
+        function animateLoveMeter() {
+            const meterFill = document.getElementById('meter-fill');
+            const lovePercent = document.getElementById('love-percent');
+            
+            if (meterFill && lovePercent) {
                 let percent = 0;
                 const interval = setInterval(() => {
                     if (percent < 100) {
@@ -2262,505 +2096,269 @@ function revealBhalluStory() {
                     }
                 }, 20);
             }
+        }
+        
+        // ===== BHALLU REVEAL =====
+        function revealBhalluStory() {
+            const revealBtn = document.getElementById('reveal-bhallu');
+            const secretReason = document.getElementById('secret-reason');
             
-            // Love Calculator
-            function calculateLove() {
-                const name1 = document.getElementById('name1').value.toLowerCase() || 'bacha';
-                const name2 = document.getElementById('name2').value.toLowerCase() || 'aroush';
-                
-                // Simple love calculation (always high for you two!)
-                let score = 95 + Math.floor(Math.random() * 6); // 95-100%
-                
-                const messages = [
-                    "Perfect Match! Soulmates forever! 💖",
-                    "Made for each other! True love! ❤️",
-                    "Destined to be together! 💫",
-                    "A love story written in the stars! 🌟",
-                    "The perfect pair! Meant to be! 💕"
-                ];
-                
-                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                
-                const resultDiv = document.getElementById('love-result');
-                const percentageDiv = document.getElementById('love-percentage');
-                const messageDiv = document.getElementById('love-message');
-                
-                percentageDiv.textContent = `${score}%`;
-                messageDiv.textContent = randomMessage;
-                resultDiv.style.display = 'block';
-                
-                // Confetti celebration
-                createConfetti(50);
-            }
+            createConfetti(50);
             
-            // Virtual Rose Gifting
-            function giftRose() {
-                const roseMessage = document.getElementById('rose-message');
-                roseMessage.style.display = 'block';
-                
-                // Animate rose
-                const rose = document.querySelector('.rose');
-                rose.style.animation = 'roseBloom 1s ease-in-out 3';
-                
-                // Create falling rose petals
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        createRosePetal();
-                    }, i * 100);
-                }
-                
-                // Show message for 5 seconds
+            revealBtn.innerHTML = '<i class="fas fa-unlock"></i> Secret Revealed!';
+            revealBtn.classList.add('unlocked');
+            revealBtn.disabled = true;
+            
+            secretReason.style.display = 'block';
+            
+            const reasonItems = document.querySelectorAll('.reason-item');
+            reasonItems.forEach((item, index) => {
                 setTimeout(() => {
-                    roseMessage.style.display = 'none';
-                }, 5000);
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, index * 300);
+            });
+        }
+        
+        // ===== VIRTUAL ROSE =====
+        function giftRose() {
+            const roseMessage = document.getElementById('rose-message');
+            roseMessage.style.display = 'block';
+            
+            const rose = document.querySelector('.rose');
+            rose.style.animation = 'roseBloom 1s ease-in-out 3';
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createRosePetal();
+                }, i * 100);
             }
             
-            function createRosePetal() {
-                const petal = document.createElement('div');
-                petal.innerHTML = '🌸';
-                petal.style.cssText = `
+            setTimeout(() => {
+                roseMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        function createRosePetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌸';
+            petal.style.cssText = `
+                position: fixed;
+                top: -50px;
+                left: ${Math.random() * 100}%;
+                font-size: ${20 + Math.random() * 20}px;
+                opacity: 0.7;
+                z-index: 1000;
+                pointer-events: none;
+            `;
+            
+            document.body.appendChild(petal);
+            
+            petal.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(${window.innerHeight + 50}px) rotate(${360 + Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: 3000 + Math.random() * 2000,
+                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+            });
+            
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.remove();
+                }
+            }, 5000);
+        }
+        
+        // ===== MESSAGE DECODER =====
+        function decodeMessage() {
+            const code = document.getElementById('secret-code').value.toLowerCase();
+            const validCodes = ['0512'];
+            const decodedMessage = document.getElementById('decoded-message');
+            
+            if (validCodes.includes(code)) {
+                decodedMessage.style.display = 'block';
+                createConfetti(30);
+            } else {
+                decodedMessage.style.display = 'block';
+                decodedMessage.innerHTML = `<p>❌ Incorrect code! Try: 0512</p>`;
+            }
+        }
+        
+        // ===== UNLOCK FINAL MESSAGE =====
+        function unlockFinalMessage() {
+            const password = document.getElementById('password').value.toLowerCase();
+            const validPasswords = ['bhallu', '853', '8:53', 'bear', 'aroush', 'mera bacha', 'mari jan'];
+            
+            if (validPasswords.includes(password)) {
+                createConfetti(200);
+                
+                const finalMessage = document.getElementById('finalMessage');
+                finalMessage.style.display = 'block';
+                
+                document.querySelector('.password-input').style.display = 'none';
+                document.querySelector('.hints').style.display = 'none';
+                document.querySelector('.lock-animation').style.display = 'none';
+                document.querySelector('.surprise-title').style.display = 'none';
+                document.querySelector('.surprise-subtitle').style.display = 'none';
+                
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: finalMessage.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                }, 300);
+            } else {
+                const passwordInput = document.getElementById('password');
+                passwordInput.style.background = 'rgba(255, 46, 99, 0.2)';
+                passwordInput.value = '';
+                passwordInput.placeholder = 'Try again...';
+                
+                passwordInput.animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(0)' }
+                ], {
+                    duration: 300,
+                    iterations: 2
+                });
+            }
+        }
+        
+        // ===== DOWNLOAD PDF =====
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(24);
+            doc.setTextColor(255, 46, 99);
+            doc.text("For My Aroush 💖", 105, 20, null, null, 'center');
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text("My dearest Bhallu,", 20, 40);
+            doc.text("This is a digital keepsake of our special Valentine's Day.", 20, 50);
+            doc.text("Every moment with you is precious.", 20, 60);
+            doc.text("I love you more than words can express.", 20, 70);
+            doc.text("Forever yours,", 20, 90);
+            doc.text("Your Bacha ❤️", 20, 100);
+            
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            doc.text(`Created on: ${dateStr}`, 20, 120);
+            
+            doc.save('For-My-Aroush-Valentine.pdf');
+        }
+        
+        // ===== SAVE PAGE =====
+        function savePage() {
+            const content = document.documentElement.outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Aroush-Valentine-Surprise.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('Page saved successfully! You can open it anytime offline. 💖');
+        }
+        
+        // ===== SHARE SITE =====
+        function shareSite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'For My Aroush 💖',
+                    text: 'A special Valentine\'s surprise made with love!',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard! Share it with your love 💖');
+                });
+            }
+        }
+        
+        // ===== VISUAL EFFECTS =====
+        function createFloatingHearts() {
+            const container = document.getElementById('floating-hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.cssText = `
                     position: fixed;
-                    top: -50px;
                     left: ${Math.random() * 100}%;
-                    font-size: ${20 + Math.random() * 20}px;
-                    opacity: 0.7;
+                    top: ${Math.random() * 100}%;
+                    font-size: ${15 + Math.random() * 20}px;
+                    opacity: ${0.1 + Math.random() * 0.2};
+                    z-index: 1;
+                    pointer-events: none;
+                    animation: float ${15 + Math.random() * 20}s linear infinite;
+                    animation-delay: ${Math.random() * 5}s;
+                `;
+                container.appendChild(heart);
+            }
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+                    10% { opacity: 0.3; }
+                    90% { opacity: 0.3; }
+                    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        function createConfetti(count) {
+            const colors = ['#FF2E63', '#F9ED69', '#AA96DA', '#FFFFFF'];
+            
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    left: ${Math.random() * 100}%;
+                    top: -20px;
                     z-index: 1000;
                     pointer-events: none;
                 `;
+                document.body.appendChild(confetti);
                 
-                document.body.appendChild(petal);
-                
-                // Animate falling
-                petal.animate([
+                confetti.animate([
                     { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight + 50}px) rotate(${360 + Math.random() * 360}deg)`, opacity: 0 }
+                    { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
                 ], {
-                    duration: 3000 + Math.random() * 2000,
+                    duration: 1000 + Math.random() * 2000,
                     easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
                 });
                 
-                // Remove after animation
                 setTimeout(() => {
-                    if (petal.parentNode) {
-                        petal.remove();
+                    if (confetti.parentNode) {
+                        confetti.remove();
                     }
-                }, 5000);
+                }, 3000);
             }
-            
-            // Message Decoder
-            function decodeMessage() {
-                const code = document.getElementById('secret-code').value.toLowerCase();
-                const validCodes = ['0512'];
-                const decodedMessage = document.getElementById('decoded-message');
-                
-                if (validCodes.includes(code)) {
-                    decodedMessage.style.display = 'block';
-                    decodedMessage.innerHTML = `
-                        <p>💖 Successfully decoded! 💖</p>
-                        <p>"My dearest Aroush, every moment with you feels like decoding the most beautiful secret of the universe. 
-                        You are my everything, my today, and all my tomorrows. I love you more than words can express."</p>
-                    `;
-                    createConfetti(30);
-                } else {
-                    decodedMessage.style.display = 'block';
-                    decodedMessage.innerHTML = `<p>❌ Incorrect code! Try: 0512, Bhallu, or Aroush</p>`;
-                }
-            }
-            // ===== VALENTINE WEBSITE SCRIPT =====
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('💖 Starting Aroush\'s Valentine Experience...');
-    
-    // Elements
-    const steps = document.querySelectorAll('.step');
-    const dots = document.querySelectorAll('.dot');
-    const loader = document.getElementById('loader');
-    const mainContainer = document.getElementById('main-container');
-    const yesBtn = document.getElementById('yes-btn');
-    const noBtn = document.getElementById('no-btn');
-    const secretNoMessage = document.getElementById('secret-no-message');
-    const toStep2Btn = document.getElementById('to-step2');
-    const toStep3Btn = document.getElementById('to-step3');
-    const toStep4Btn = document.getElementById('to-step4');
-    const toStep5Btn = document.getElementById('to-step5');
-    const unlockBtn = document.getElementById('unlock-btn');
-    const calculateLoveBtn = document.getElementById('calculate-love');
-    
-    let currentStep = 1;
-    let noClickCount = 0;
-    let swiper = null;
-    
-    // Initialize Swiper Slideshow
-    function initSwiper() {
-        swiper = new Swiper('.swiper', {
-            direction: 'horizontal',
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-        });
-    }
-    
-    // Initialize
-    function init() {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-                mainContainer.style.display = 'block';
-                
-                // Create floating hearts
-                createFloatingHearts();
-                
-                // Show step 1
-                showStep(1);
-                
-                // Initialize Swiper
-                if (document.querySelector('.swiper')) {
-                    initSwiper();
-                }
-                
-            }, 500);
-        }, 1500);
-        
-        // Setup event listeners
-        setupEventListeners();
-    }
-    
-    // Event Listeners
-    function setupEventListeners() {
-        // Yes button
-        if (yesBtn) yesBtn.addEventListener('click', handleYesClick);
-        
-        // No button
-        if (noBtn) noBtn.addEventListener('click', handleNoClick);
-        
-        // Next step buttons
-        if (toStep2Btn) toStep2Btn.addEventListener('click', () => showStep(2));
-        if (toStep3Btn) toStep3Btn.addEventListener('click', () => showStep(3));
-        if (toStep4Btn) toStep4Btn.addEventListener('click', () => showStep(4));
-        if (toStep5Btn) toStep5Btn.addEventListener('click', () => showStep(5));
-        
-        // Unlock button
-        if (unlockBtn) unlockBtn.addEventListener('click', unlockFinalMessage);
-        
-        // Love calculator
-        if (calculateLoveBtn) {
-            calculateLoveBtn.addEventListener('click', calculateLove);
         }
         
-        // Password input enter key
-        const passwordInput = document.getElementById('password');
-        if (passwordInput) {
-            passwordInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') unlockFinalMessage();
-            });
-        }
-    }
-    
-    // Step Navigation
-    window.goToStep = function(stepNum) {
-        showStep(stepNum);
-    };
-    
-    function showStep(stepNum) {
-        if (stepNum < 1 || stepNum > 5) return;
+        // Initialize
+        init();
         
-        // Hide all steps
-        steps.forEach(step => {
-            step.classList.remove('active');
-        });
-        
-        // Update dots
-        dots.forEach(dot => dot.classList.remove('active'));
-        if (dots[stepNum - 1]) {
-            dots[stepNum - 1].classList.add('active');
-        }
-        
-        // Show selected step
-        const targetStep = document.getElementById(`step${stepNum}`);
-        if (targetStep) {
-            targetStep.classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
-        currentStep = stepNum;
-        
-        // Step-specific actions
-        if (stepNum === 2) {
-            animateLoveMeter();
-        }
-        if (stepNum === 3 && swiper) {
-            swiper.update();
-        }
-    }
-    
-    // Love Calculator Function
-    function calculateLove() {
-        const name1 = document.getElementById('name1')?.value.toLowerCase() || 'bacha';
-        const name2 = document.getElementById('name2')?.value.toLowerCase() || 'aroush';
-        
-        // Simple love calculation
-        let score = 95 + Math.floor(Math.random() * 6); // 95-100%
-        
-        const messages = [
-            "Perfect Match! Soulmates forever! 💖",
-            "Made for each other! True love! ❤️",
-            "Destined to be together! 💫",
-            "A love story written in the stars! 🌟",
-            "The perfect pair! Meant to be! 💕"
-        ];
-        
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        
-        const resultDiv = document.getElementById('love-result');
-        const percentageDiv = document.getElementById('love-percentage');
-        const messageDiv = document.getElementById('love-message');
-        
-        if (resultDiv && percentageDiv && messageDiv) {
-            percentageDiv.textContent = `${score}%`;
-            messageDiv.textContent = randomMessage;
-            resultDiv.style.display = 'block';
-            
-            // Confetti celebration
-            createConfetti(50);
-        }
-    }
-    
-    // Love meter animation
-    function animateLoveMeter() {
-        const meterFill = document.getElementById('meter-fill');
-        const lovePercent = document.getElementById('love-percent');
-        
-        if (meterFill && lovePercent) {
-            let percent = 0;
-            const interval = setInterval(() => {
-                if (percent < 100) {
-                    percent += 1;
-                    meterFill.style.width = `${percent}%`;
-                    lovePercent.textContent = `${percent}%`;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 20);
-        }
-    }
-    
-    // Other functions (handleYesClick, handleNoClick, createConfetti, etc.)
-    // ... keep your existing functions ...
-    
-    // Initialize
-    init();
-    
-    console.log('%c💝 For Aroush - My Bhallu, My Everything 💝', 
-        'color: #FF2E63; font-size: 16px; font-weight: bold;');
-});
-            
-            // Unlock final message - WORKING NOW
-            function unlockFinalMessage() {
-                const password = document.getElementById('password').value.toLowerCase();
-                const validPasswords = ['bhallu', '853', '8:53','bear', 'aroush', 'mera bacha','mari jan'];
-                
-                if (validPasswords.includes(password)) {
-                    // Success!
-                    createConfetti(200);
-                    
-                    // Show final message
-                    const finalMessage = document.getElementById('finalMessage');
-                    finalMessage.style.display = 'block';
-                    
-                    // Hide lock section
-                    document.querySelector('.password-input').style.display = 'none';
-                    document.querySelector('.hints').style.display = 'none';
-                    document.querySelector('.lock-animation').style.display = 'none';
-                    document.querySelector('.surprise-title').style.display = 'none';
-                    document.querySelector('.surprise-subtitle').style.display = 'none';
-                    
-                    // Scroll to final message
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: finalMessage.offsetTop - 50,
-                            behavior: 'smooth'
-                        });
-                    }, 300);
-                } else {
-                    // Wrong password
-                    const passwordInput = document.getElementById('password');
-                    passwordInput.style.background = 'rgba(255, 46, 99, 0.2)';
-                    passwordInput.value = '';
-                    passwordInput.placeholder = 'Try again...';
-                    
-                    // Shake animation
-                    passwordInput.animate([
-                        { transform: 'translateX(0)' },
-                        { transform: 'translateX(10px)' },
-                        { transform: 'translateX(-10px)' },
-                        { transform: 'translateX(0)' }
-                    ], {
-                        duration: 300,
-                        iterations: 2
-                    });
-                }
-            }
-            
-            // Download PDF
-            function downloadPDF() {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                // Add content to PDF
-                doc.setFontSize(24);
-                doc.setTextColor(255, 46, 99);
-                doc.text("For My Aroush 💖", 105, 20, null, null, 'center');
-                
-                doc.setFontSize(12);
-                doc.setTextColor(0, 0, 0);
-                doc.text("My dearest Bhallu,", 20, 40);
-                doc.text("This is a digital keepsake of our special Valentine's Day.", 20, 50);
-                doc.text("Every moment with you is precious.", 20, 60);
-                doc.text("I love you more than words can express.", 20, 70);
-                doc.text("Forever yours,", 20, 90);
-                doc.text("Your Bacha ❤️", 20, 100);
-                
-                // Add date
-                const today = new Date();
-                const dateStr = today.toLocaleDateString('en-US', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                });
-                doc.text(`Created on: ${dateStr}`, 20, 120);
-                
-                // Save PDF
-                doc.save('For-My-Aroush-Valentine.pdf');
-            }
-            
-            // Save Page
-            function savePage() {
-                // Create a blob of the page content
-                const content = document.documentElement.outerHTML;
-                const blob = new Blob([content], { type: 'text/html' });
-                const url = URL.createObjectURL(blob);
-                
-                // Create download link
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'Aroush-Valentine-Surprise.html';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                // Show success message
-                alert('Page saved successfully! You can open it anytime offline. 💖');
-            }
-            
-            // Share site
-            function shareSite() {
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'For My Aroush 💖',
-                        text: 'A special Valentine\'s surprise made with love!',
-                        url: window.location.href
-                    });
-                } else {
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        alert('Link copied to clipboard! Share it with your love 💖');
-                    });
-                }
-            }
-            
-            // Visual effects
-            function createFloatingHearts() {
-                const container = document.getElementById('floating-hearts');
-                for (let i = 0; i < 20; i++) {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '❤️';
-                    heart.style.cssText = `
-                        position: fixed;
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        font-size: ${15 + Math.random() * 20}px;
-                        opacity: ${0.1 + Math.random() * 0.2};
-                        z-index: 1;
-                        pointer-events: none;
-                        animation: float ${15 + Math.random() * 20}s linear infinite;
-                        animation-delay: ${Math.random() * 5}s;
-                    `;
-                    container.appendChild(heart);
-                }
-                
-                // Add float animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes float {
-                        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-                        10% { opacity: 0.3; }
-                        90% { opacity: 0.3; }
-                        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-            
-            function createConfetti(count) {
-                const colors = ['#FF2E63', '#F9ED69', '#AA96DA', '#FFFFFF'];
-                
-                for (let i = 0; i < count; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.style.cssText = `
-                        position: fixed;
-                        width: 10px;
-                        height: 10px;
-                        background: ${colors[Math.floor(Math.random() * colors.length)]};
-                        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-                        left: ${Math.random() * 100}%;
-                        top: -20px;
-                        z-index: 1000;
-                        pointer-events: none;
-                    `;
-                    document.body.appendChild(confetti);
-                    
-                    // Animate
-                    confetti.animate([
-                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                        { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                    ], {
-                        duration: 1000 + Math.random() * 2000,
-                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
-                    });
-                    
-                    // Remove after animation
-                    setTimeout(() => {
-                        if (confetti.parentNode) {
-                            confetti.remove();
-                        }
-                    }, 3000);
-                }
-            }
-            
-            // Initialize
-            init();
-            
-            // Console message
-            console.log('%c💝 For Aroush - My Bhallu, My Everything 💝', 
-                'color: #FF2E63; font-size: 16px; font-weight: bold;');
-        });
-    </script>
+        console.log('%c💝 For Aroush - My Bhallu, My Everything 💝', 
+            'color: #FF2E63; font-size: 16px; font-weight: bold;');
+    });
+</script>
 </body>
 </html>
