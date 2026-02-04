@@ -2225,36 +2225,69 @@
             }
         }
         
-        // ===== DOWNLOAD PDF =====
-        function downloadPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            doc.setFontSize(24);
-            doc.setTextColor(255, 46, 99);
-            doc.text("For My Aroush 💖", 105, 20, null, null, 'center');
-            
-            doc.setFontSize(12);
-            doc.setTextColor(0, 0, 0);
-            doc.text("My dearest Bhallu,", 20, 40);
-            doc.text("This is a digital keepsake of our special Valentine's Day.", 20, 50);
-            doc.text("Every moment with you is precious.", 20, 60);
-            doc.text("I love you more than words can express.", 20, 70);
-            doc.text("Forever yours,", 20, 90);
-            doc.text("Your Bacha ❤️", 20, 100);
-            
-            const today = new Date();
-            const dateStr = today.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-            doc.text(`Created on: ${dateStr}`, 20, 120);
-            
-            doc.save('For-My-Aroush-Valentine.pdf');
-        }
-        
+       function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Title
+    doc.setFontSize(28);
+    doc.setTextColor(255, 46, 99); // Pink color
+    doc.text("FOR MY BHALLU 💝", 105, 20, null, null, 'center');
+    
+    // Decorative line
+    doc.setDrawColor(255, 46, 99);
+    doc.line(20, 30, 190, 30);
+    
+    // Your custom message
+    doc.setFontSize(14);
+    doc.setTextColor(0, 0, 0); // Black color
+    
+    const message = [
+        "My Dearest Aroush,",
+        "",
+        "This Valentine's Day, I wanted to create something",
+        "special just for you. Every moment since December 5th",
+        "has been magical, and my love for you grows stronger",
+        "with each passing day.",
+        "",
+        "You are my Bhallu - my sweet bear who makes",
+        "every day brighter. Your smile lights up my world,",
+        "and your love fills my heart with joy.",
+        "",
+        "No matter where life takes us, know that you",
+        "will always have my heart. I promise to love you,",
+        "cherish you, and stand by you through everything.",
+        "",
+        "This digital keepsake is a small token of my",
+        "everlasting love for you.",
+        "",
+        "Forever and always,",
+        "Your Bacha 💖"
+    ];
+    
+    // Add each line to PDF
+    let yPosition = 50;
+    message.forEach(line => {
+        doc.text(line, 20, yPosition);
+        yPosition += 10;
+    });
+    
+    // Add date at bottom
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Created with love on ${dateStr}`, 105, 280, null, null, 'center');
+    
+    // Save PDF with custom name
+    doc.save('MyLoveForAroush.pdf');
+}
         // ===== SAVE PAGE =====
         function savePage() {
             const content = document.documentElement.outerHTML;
