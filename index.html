@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Bhallu ❤️ - Aroush's Valentine Surprise</title>
+    <title>For My Bhallu ❤️ - Aroush's Valentine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&family=Great+Vibes&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     
     <style>
@@ -17,30 +17,47 @@
         }
 
         :root {
-            --primary-pink: #FF2E63;
-            --soft-pink: #FF8BA0;
-            --deep-pink: #FF1168;
-            --gold: #F9ED69;
-            --light-gold: #FFF8B5;
-            --purple: #AA96DA;
-            --light-purple: #C5B6F3;
-            --white: #FFFFFF;
-            --off-white: #FFF5F7;
-            --bear-brown: #C68642;
-            --light-brown: #E8C07D;
-            --dark-bg: #1A1A2E;
-            --darker-bg: #0F0F1E;
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --glass-white-strong: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --primary-red: #FF3366;
+            --soft-red: #FF6699;
+            --dark-red: #CC0044;
+            --gold: #FFD166;
+            --light-gold: #FFE8A0;
+            --deep-bg: #0A0A14;
+            --darker-bg: #05050A;
+            --accent-purple: #9D4EDD;
+            --light-purple: #C77DFF;
+            --bear-brown: #8D6E63;
+            --light-brown: #D7CCC8;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--dark-bg);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--deep-bg) 0%, var(--darker-bg) 100%);
+            color: rgba(255, 255, 255, 0.9);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            line-height: 1.6;
+            line-height: 1.8;
             scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 51, 102, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 209, 102, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         html {
@@ -54,7 +71,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+            background: var(--deep-bg);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -63,27 +80,95 @@
             transition: opacity 1s ease-out;
         }
 
-        .heart-loader {
-            font-size: 60px;
-            animation: heartbeat 1.2s infinite;
-            margin-bottom: 20px;
+        .loader-content {
+            text-align: center;
+            backdrop-filter: blur(20px);
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            animation: fadeInUp 1s ease-out;
         }
 
+        .heart-loader {
+    font-size: 60px;
+    background: linear-gradient(135deg, var(--primary-red), var(--gold));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin-bottom: 20px;
+    animation: heartbeat 1.2s infinite;
+}
         .loading-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.8;
             animation: pulseText 2s infinite;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
         }
 
-        /* ===== FLOATING HEARTS ===== */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        /* ===== GLASS MORPHISM UTILITIES ===== */
+        .glass-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px var(--glass-shadow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: var(--glass-white-strong);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .glass-btn {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .glass-btn:hover {
+            background: var(--glass-white-strong);
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 51, 102, 0.3);
+        }
+
+        .glass-btn-primary {
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-purple));
+            border: none;
+        }
+
+        .glass-btn-primary:hover {
+            background: linear-gradient(135deg, var(--dark-red), var(--accent-purple));
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4);
+        }
+
+        /* ===== PAGE TRANSITION ANIMATIONS ===== */
+        .page-enter {
+            animation: pageEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .page-exit {
+            animation: pageExit 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         /* ===== MAIN CONTAINER ===== */
@@ -99,7 +184,6 @@
             display: none;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             min-height: 100vh;
             padding-top: 40px;
             position: relative;
@@ -109,150 +193,102 @@
             display: block;
             opacity: 1;
             transform: translateY(0);
-            animation: fadeInUp 0.8s ease-out;
+            animation: pageEnter 0.8s ease-out;
         }
 
-        /* ===== STEP 1: ENVELOPE - COMPLETELY FIXED ===== */
-        .envelope-container {
+        /* ===== STEP 1: ELEGANT PROPOSAL ===== */
+        .proposal-container {
             max-width: 700px;
-            margin: 50px auto;
-            position: relative;
-            min-height: 500px;
+            margin: 60px auto;
         }
 
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            height: 250px;
-            background: transparent !important;
-            box-shadow: none !important;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            transform-origin: top;
-            animation: envelopeOpen 2s ease-out forwards;
-            z-index: 2;
-            
-        }
-
-        .envelope-body {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        .envelope-glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            margin-top: 150px;
-            z-index: 1;
+            animation: cardFloat 6s ease-in-out infinite;
         }
 
-        .envelope-body::before {
-            content: "";
+        .envelope-glass::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-        }
-
-        /* FIX: Responsive envelope */
-        @media (max-width: 768px) {
-            .envelope-flap {
-                width: 300px;
-                height: 180px;
-            }
-            
-            .envelope-body {
-                margin-top: 120px;
-                padding: 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .envelope-flap {
-                width: 250px;
-                height: 150px;
-            }
-            
-            .envelope-body {
-                margin-top: 100px;
-                padding: 20px;
-            }
-        }
-
-        .letter {
-            padding: 40px;
-            background: var(--off-white);
-            border-radius: 10px;
-            border: 2px solid var(--light-purple);
-            position: relative;
-            z-index: 3;
-        }
-        @media (max-width: 768px) {
-            .letter {
-                padding: 25px;
-            }
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--gold), var(--accent-purple));
+            border-radius: 25px 25px 0 0;
         }
 
         .letter-content {
             text-align: center;
+            padding: 30px;
         }
 
-        .animated-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: var(--primary-pink);
-            margin-bottom: 20px;
-            animation: titleGlow 3s infinite alternate;
-        }
-
-        @media (max-width: 768px) {
-            .animated-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        .highlight {
-            background: linear-gradient(to right, var(--gold), var(--light-gold));
+        .elegant-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--gold));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            padding: 0 10px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            animation: titleGlow 3s infinite alternate;
+        }
+
+        .elegant-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .letter-text {
-            font-size: 1.3rem;
-            color: #666;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 40px;
+            line-height: 1.8;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
-        .question-box {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
+        .proposal-box {
+            background: var(--glass-white);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
             margin: 30px 0;
-            box-shadow: 0 8px 32px rgba(255, 46, 99, 0.1);
-            border: 3px solid var(--light-purple);
-            position: relative;
-            z-index: 4;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
-        .question-box h2 {
-            color: var(--primary-pink);
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+        .proposal-question {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            animation: gentlePulse 2s infinite;
         }
 
-        @media (max-width: 768px) {
-            .question-box h2 {
-                font-size: 1.8rem;
-            }
-        }
-
-        .sub-question {
-            color: var(--purple);
+        .proposal-subtext {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
             font-style: italic;
             margin-bottom: 30px;
         }
@@ -263,72 +299,108 @@
             gap: 30px;
             margin-top: 40px;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 1000;
+            animation: fadeInUp 1s ease-out 0.7s both;
         }
 
         .btn-yes, .btn-no {
-            padding: 20px 40px;
+            padding: 18px 45px;
             border: none;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            min-width: 250px;
-            z-index: 1001;
-        }
-
-        @media (max-width: 768px) {
-            .btn-yes, .btn-no {
-                min-width: 200px;
-                padding: 15px 30px;
-                font-size: 1.1rem;
-            }
+            min-width: 220px;
         }
 
         .btn-yes {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: var(--white);
-            box-shadow: 0 0 30px rgba(255, 46, 99, 0.5);
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-purple));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
+            animation: buttonGlow 2s infinite alternate;
         }
 
         .btn-yes:hover {
-            transform: scale(1.1) rotate(-2deg);
-            box-shadow: 0 0 40px rgba(255, 46, 99, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.5);
+        }
+
+        .btn-yes::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-yes:hover::after {
+            left: 100%;
         }
 
         .btn-no {
-            background: var(--white);
-            color: var(--primary-pink);
-            border: 3px solid var(--primary-pink);
+            background: transparent;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-no:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.3);
         }
 
         .secret-message {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(255, 46, 99, 0.1);
+            background: rgba(255, 51, 102, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 10px;
             display: none;
             animation: shake 0.5s;
-            position: relative;
-            z-index: 3;
+            border: 1px solid rgba(255, 51, 102, 0.3);
         }
 
         .bear-hint {
             margin-top: 40px;
             padding: 20px;
-            background: linear-gradient(135deg, var(--bear-brown), var(--light-brown));
+            background: rgba(141, 110, 99, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(141, 110, 99, 0.3);
             border-radius: 15px;
             display: inline-block;
-            animation: bearFloat 4s infinite ease-in-out;
-            position: relative;
-            z-index: 3;
+            animation: gentleFloat 4s infinite ease-in-out;
         }
 
-        /* ===== STEP 2: TIMELINE - COMPLETELY FIXED ===== */
+        .next-step-btn {
+            background: var(--glass-white);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 50px auto 30px;
+            display: block;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .next-step-btn:hover {
+            background: var(--glass-white-strong);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 209, 102, 0.2);
+        }
+
+        /* ===== STEP 2: TIMELINE ===== */
         .timeline-container {
             max-width: 900px;
             margin: 0 auto;
@@ -337,27 +409,23 @@
 
         .section-title {
             text-align: center;
+            font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary-red), var(--gold));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            display: inline-block;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2.2rem;
-            }
+            animation: fadeInUp 1s ease-out;
         }
 
         .section-subtitle {
             text-align: center;
-            color: var(--soft-pink);
-            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
             margin-bottom: 50px;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
         .timeline {
@@ -370,500 +438,321 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
+            width: 2px;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            border-radius: 2px;
-        }
-
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 30px;
-            }
+            background: linear-gradient(180deg, var(--primary-red), var(--accent-purple), transparent);
+            border-radius: 1px;
+            animation: lineGrow 2s ease-out;
         }
 
         .timeline-item {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 60px 0;
+            margin: 70px 0;
             position: relative;
+            animation: timelineReveal 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        @media (max-width: 768px) {
-            .timeline-item {
-                flex-direction: row !important;
-                justify-content: flex-start;
-                margin-left: 60px;
-                margin-right: 20px;
-            }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .timeline-date {
-            width: 150px;
+            width: 140px;
             padding: 15px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: var(--white);
+            background: var(--glass-white);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            color: white;
             text-align: center;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 1.1rem;
-            box-shadow: 0 15px 35px rgba(255, 46, 99, 0.2);
+            font-size: 1rem;
             position: relative;
             z-index: 2;
             margin: 0 30px;
-        }
-
-        @media (max-width: 768px) {
-            .timeline-date {
-                position: absolute;
-                left: -80px;
-                width: 60px;
-                font-size: 0.9rem;
-                padding: 10px;
-                margin: 0;
-            }
+            box-shadow: 0 8px 25px var(--glass-shadow);
         }
 
         .timeline-content {
-            width: 400px;
+            width: 380px;
             padding: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(255, 46, 99, 0.1);
-            overflow: hidden;
-            word-wrap: break-word;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            box-shadow: 0 12px 35px var(--glass-shadow);
+            position: relative;
         }
 
-        @media (max-width: 768px) {
-            .timeline-content {
-                width: 100%;
-                padding: 20px;
-            }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary-red);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -40px;
         }
 
         .timeline-content h3 {
             color: var(--gold);
             margin-bottom: 15px;
             font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .timeline-content p {
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 15px;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-weight: 300;
         }
 
         .chat-bubble {
-            max-width: 80%;
-            padding: 12px 15px;
+            max-width: 75%;
+            padding: 12px 18px;
             margin: 10px 0;
-            border-radius: 20px;
+            border-radius: 18px;
             position: relative;
             animation: fadeInLeft 0.5s ease-out;
-            word-wrap: break-word;
+            backdrop-filter: blur(10px);
         }
 
         .chat-bubble.mine {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: var(--white);
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-purple));
+            color: white;
             margin-left: auto;
             border-bottom-right-radius: 5px;
         }
 
         .chat-bubble.hers {
-            background: linear-gradient(to right, var(--gold), var(--light-gold));
-            color: #333;
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            color: white;
             border-bottom-left-radius: 5px;
             margin-right: auto;
-        }
-
-        .love-meter-container {
-            width: 100%;
-            margin: 20px 0;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-        }
-
-        .love-meter {
-            width: 100%;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid var(--primary-pink);
-        }
-
-        .meter-fill {
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            width: 100%;
-            border-radius: 15px;
-            animation: fillMeter 2s ease-out forwards;
-        }
-
-        .meter-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--white);
-            font-weight: 600;
-            z-index: 2;
-            white-space: nowrap;
-            font-size: 0.9rem;
-            padding: 0 10px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-
-        @media (max-width: 480px) {
-            .meter-text {
-                font-size: 0.8rem;
-                white-space: normal;
-                line-height: 1.2;
-                padding: 5px;
-            }
-        }
-
-        /* ===== NEXT STEP BUTTONS - FIXED ===== */
-        .next-step-btn {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: var(--white);
-            border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 40px auto;
-            display: block;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-            overflow: hidden;
-            z-index: 10;
-            box-shadow: 0 5px 15px rgba(255, 46, 99, 0.4);
-        }
-
-        .next-step-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 46, 99, 0.6);
-        }
-
-        .next-step-btn i {
-            margin-left: 10px;
-            transition: transform 0.3s;
-        }
-
-        .next-step-btn:hover i {
-            transform: translateX(5px);
-        }
-
-        @media (max-width: 768px) {
-            .next-step-btn {
-                padding: 15px 30px;
-                font-size: 1.1rem;
-                margin: 30px auto;
-            }
-        }
-
-        /* ===== STEP 3: SLIDESHOW ===== */
-        .slideshow-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-
-        .slideshow-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: var(--gold);
-        }
-
-        .swiper {
-            width: 100%;
-            height: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .swiper-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-        }
-        /* ===== BHALLU STORY SECTION ===== */
-.bhallu-story {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    border: 2px solid var(--bear-brown);
-    text-align: center;
-}
-
-.story-container h3 {
-    color: var(--bear-brown);
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.story-intro {
-    color: var(--light-purple);
-    margin-bottom: 30px;
-    font-style: italic;
-}
-
-.reveal-box {
-    position: relative;
-}
-
-.reveal-btn {
-    background: linear-gradient(135deg, var(--bear-brown), var(--light-brown));
-    color: var(--white);
-    border: none;
-    padding: 18px 40px;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 20px auto;
-    display: block;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(198, 134, 66, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.reveal-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(198, 134, 66, 0.6);
-}
-
-.reveal-btn.unlocked {
-    background: linear-gradient(135deg, var(--gold), var(--light-gold));
-    color: var(--dark-bg);
-}
-
-.reveal-btn.unlocked i {
-    animation: spin 1s ease-in-out;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.secret-reason {
-    display: none;
-    margin-top: 30px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    border: 2px solid rgba(198, 134, 66, 0.3);
-    animation: fadeInUp 0.8s ease-out;
-}
-
-.secret-content {
-    text-align: center;
-}
-
-.secret-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    animation: bearFloat 3s infinite ease-in-out;
-}
-
-.secret-content h4 {
-    color: var(--gold);
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.secret-content p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 25px;
-    line-height: 1.6;
-}
-
-.reasons-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.reason-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    border-left: 4px solid var(--bear-brown);
-    text-align: left;
-    animation: fadeInLeft 0.5s ease-out;
-}
-
-.reason-item i {
-    color: var(--bear-brown);
-    font-size: 1.2rem;
-    min-width: 25px;
-}
-
-.reason-item span {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.5;
-}
-
-.reason-item strong {
-    color: var(--light-gold);
-}
-
-.final-note {
-    background: rgba(198, 134, 66, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    border-left: 4px solid var(--gold);
-    margin-top: 25px;
-    font-size: 1.1rem;
-}
-
-.final-note strong {
-    color: var(--light-gold);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .bhallu-story {
-        padding: 20px;
-        margin: 30px auto;
-    }
-    
-    .reveal-btn {
-        padding: 15px 25px;
-        font-size: 1rem;
-    }
-    
-    .reason-item {
-        padding: 10px 15px;
-    }
-}
-
-        .slide-content {
-            padding: 40px;
-            text-align: center;
-            color: white;
-        }
-
-        .slide-content i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .photo-slide {
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            padding: 20px;
-        }
-
-        .photo-caption {
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            width: 100%;
         }
 
         /* ===== LOVE CALCULATOR ===== */
         .love-calculator {
             max-width: 500px;
             margin: 50px auto;
-            padding: 30px;
-            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             text-align: center;
-            border: 2px solid var(--gold);
+            box-shadow: 0 15px 40px var(--glass-shadow);
+            animation: fadeInUp 1s ease-out;
         }
 
-        .love-calculator h3 {
+        /* ===== STEP 3: BHALLU PAGE (NEW PAGE) ===== */
+        .bhallu-page {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+        }
+
+        .bhallu-reveal {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 20px 50px var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            animation: cardFloat 8s ease-in-out infinite;
+        }
+
+        .bhallu-reveal::before {
+            content: '🐻';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-size: 200px;
+            opacity: 0.05;
+            z-index: 0;
+            animation: gentleFloat 6s infinite ease-in-out;
+        }
+
+        .bhallu-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
             color: var(--gold);
             margin-bottom: 20px;
-            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .calculator-inputs {
+        .bhallu-intro {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reason-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardReveal 0.6s ease-out forwards;
+        }
+
+        .reason-card:nth-child(1) { animation-delay: 0.1s; }
+        .reason-card:nth-child(2) { animation-delay: 0.2s; }
+        .reason-card:nth-child(3) { animation-delay: 0.3s; }
+        .reason-card:nth-child(4) { animation-delay: 0.4s; }
+        .reason-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .reason-card:hover {
+            transform: translateY(-10px);
+            background: var(--glass-white-strong);
+            border-color: var(--gold);
+        }
+
+        .reason-icon {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .reason-card h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .reason-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        .bhallu-poem {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(141, 110, 99, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(141, 110, 99, 0.3);
+            border-radius: 15px;
+            font-style: italic;
+            color: var(--light-gold);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        /* ===== STEP 4: SLIDESHOW ===== */
+        .slideshow-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px 20px;
+        }
+
+        .slideshow-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px var(--glass-shadow);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .swiper-slide {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
         }
 
-        .calculator-inputs input {
-            flex: 1;
-            min-width: 200px;
-            padding: 12px;
-            border: 2px solid var(--purple);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.1);
+        .photo-slide {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .photo-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+            text-align: center;
             color: white;
-            font-size: 1rem;
+            animation: fadeInUp 1s ease-out;
         }
 
-        #calculate-love {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .love-result {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            display: none;
-        }
-
-        .love-percentage {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary-pink);
-            margin: 10px 0;
-        }
-
-        .love-message {
+        .slide-content i {
+            font-size: 4rem;
+            margin-bottom: 20px;
             color: var(--gold);
-            font-style: italic;
         }
 
         /* ===== VIRTUAL ROSE ===== */
         .virtual-rose {
             text-align: center;
             margin: 50px auto;
-            padding: 30px;
+            padding: 40px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             max-width: 500px;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .rose-container {
@@ -877,7 +766,7 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            background: var(--primary-pink);
+            background: linear-gradient(135deg, var(--primary-red), var(--soft-red));
             border-radius: 0 100px 100px 100px;
             top: 50px;
             left: 50px;
@@ -885,181 +774,196 @@
             animation: roseBloom 3s infinite alternate;
         }
 
-        .rose-leaf {
-            position: absolute;
-            width: 60px;
-            height: 100px;
-            background: #2d5a27;
-            border-radius: 0 60px 60px 0;
-            bottom: 0;
-        }
-
-        .rose-leaf:nth-child(2) {
-            left: 70px;
-            transform: rotate(90deg);
-        }
-
-        .rose-leaf:nth-child(3) {
-            right: 70px;
-            transform: rotate(-90deg);
-        }
-
-        .gift-rose-btn {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        /* ===== URDU POETRY ===== */
+        /* ===== URDU POETRY SECTION ===== */
         .urdu-poetry-section {
-            max-width: 700px;
+            max-width: 800px;
             margin: 50px auto;
             padding: 40px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            text-align: center;
-            border-right: 5px solid var(--gold);
-            border-left: 5px solid var(--primary-pink);
+            background: var(--glass-white);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
-        .urdu-text {
+        .poetry-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .poetry-header i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .poetry-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .poetry-container {
+            min-height: 220px;
+            position: relative;
+        }
+
+        .urdu-verse {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-right: 3px solid var(--gold);
+            border-left: 3px solid var(--primary-pink);
+            animation: verseFadeIn 0.8s ease-out;
+            display: none;
+        }
+
+        .urdu-verse.active {
+            display: block;
+        }
+
+        .urdu-line {
             font-family: 'Noto Nastaliq Urdu', serif;
             font-size: 2rem;
-            line-height: 1.8;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        .urdu-translation {
-            color: var(--soft-pink);
-            font-style: italic;
-            margin-top: 20px;
-        }
-
-        /* ===== MESSAGE DECODER ===== */
-        .message-decoder {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
+            line-height: 1.6;
+            color: var(--light-gold);
+            margin: 15px 0;
+            direction: rtl;
             text-align: center;
         }
 
-        .decoder-input {
-            width: 100%;
-            padding: 15px;
-            margin: 20px 0;
-            border: 2px solid var(--purple);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .decode-btn {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-
-        .decoded-message {
-            margin-top: 20px;
+        .translation {
+            text-align: center;
             padding: 20px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(126, 87, 194, 0.1);
             border-radius: 15px;
-            display: none;
-            animation: fadeIn 0.5s;
+            margin-top: 20px;
         }
 
-        /* ===== STEP 5: FINAL SURPRISE - COMPLETELY FIXED ===== */
+        .translation p {
+            color: var(--soft-pink);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .poetry-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .prev-verse, .next-verse {
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .verse-counter {
+            color: var(--light-purple);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .poetry-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .favorite-btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .favorite-btn.active {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        /* ===== STEP 5: FINAL SURPRISE ===== */
         .final-surprise {
-            max-width: 800px;
+            max-width: 700px;
             margin: 50px auto;
             padding: 40px 20px;
         }
 
-        .surprise-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 50px 30px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
+        .surprise-glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 50px 40px;
             text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            animation: cardFloat 10s ease-in-out infinite;
         }
 
-        .lock-animation {
+        .lock-glass {
             margin: 0 auto 40px;
             width: 100px;
             height: 120px;
             position: relative;
-            animation: lockFloat 3s infinite ease-in-out;
+            animation: gentleFloat 3s infinite ease-in-out;
         }
 
-        .lock-body {
+        .lock-body-glass {
             width: 80px;
             height: 60px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--glass-border);
             border-radius: 10px;
             position: absolute;
             bottom: 0;
             left: 10px;
-            box-shadow: 0 15px 35px rgba(255, 46, 99, 0.2);
+            box-shadow: 0 10px 30px var(--glass-shadow);
         }
 
-        .lock-shackle {
+        .lock-shackle-glass {
             width: 60px;
             height: 40px;
-            border: 8px solid var(--gold);
+            border: 6px solid var(--gold);
             border-radius: 30px 30px 0 0;
             border-bottom: none;
             position: absolute;
             top: 0;
             left: 10px;
+            backdrop-filter: blur(5px);
             animation: shackleMove 4s infinite ease-in-out;
         }
 
-        .lock-keyhole {
-            width: 8px;
-            height: 15px;
-            background: var(--white);
-            border-radius: 4px;
-            position: absolute;
-            bottom: 15px;
-            left: 36px;
-        }
-
-        .lock-text {
-            margin-top: 20px;
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
         .surprise-title {
-            font-size: 2.8rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
+            background: linear-gradient(135deg, var(--primary-red), var(--gold));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-        }
-
-        .surprise-subtitle {
-            color: var(--soft-pink);
-            margin-bottom: 40px;
-            font-size: 1.2rem;
         }
 
         .password-input {
@@ -1075,72 +979,18 @@
             flex: 1;
             min-width: 250px;
             padding: 15px 20px;
-            border: 2px solid var(--light-purple);
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             font-size: 1.1rem;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s;
         }
 
         .password-input input:focus {
             outline: none;
-            border-color: var(--primary-pink);
-            box-shadow: 0 0 20px rgba(255, 46, 99, 0.3);
-        }
-
-        .password-input button {
-            background: linear-gradient(135deg, var(--primary-pink), var(--purple));
-            color: var(--white);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-        }
-
-        .password-input button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 46, 99, 0.5);
-        }
-
-        .hints {
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .hint {
-            color: var(--light-purple);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .password-input {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .password-input input {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .hints {
-                flex-direction: column;
-                gap: 15px;
-            }
+            border-color: var(--primary-red);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
         }
 
         .final-message {
@@ -1150,101 +1000,18 @@
         }
 
         .message-content {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-white);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 40px;
             text-align: left;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .message-content h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: var(--gold);
-        }
-
-        .final-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .eternal-love {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: rgba(255, 46, 99, 0.1);
-            border-radius: 15px;
-            border: 2px solid rgba(255, 46, 99, 0.3);
-        }
-
-        .infinity-symbol {
-            font-size: 4rem;
-            color: var(--primary-pink);
-            margin-bottom: 10px;
-            animation: spinInfinity 10s linear infinite;
-        }
-
-        /* ===== DOWNLOAD PDF SECTION ===== */
-        .download-section {
-            text-align: center;
-            margin: 50px auto;
-            padding: 30px;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, var(--gold), var(--light-gold));
-            color: var(--dark-bg);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin: 20px;
-        }
-
-        .share-btn {
-            background: linear-gradient(to right, var(--gold), var(--light-gold));
-            color: var(--dark-bg);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin: 30px auto;
-            display: block;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .share-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(249, 237, 105, 0.5);
-        }
-
-        .credits {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .pulse {
-            animation: heartbeat 1.2s infinite;
-            color: var(--primary-pink);
+            border: 1px solid var(--glass-border);
         }
 
         /* ===== NAVIGATION DOTS ===== */
         .nav-dots {
             position: fixed;
-            right: 20px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
@@ -1254,33 +1021,27 @@
         }
 
         .dot {
-            width: 15px;
-            height: 15px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             position: relative;
         }
 
         .dot.active {
-            background: var(--primary-pink);
+            background: var(--primary-red);
+            border-color: var(--primary-red);
             transform: scale(1.3);
-            box-shadow: 0 0 10px var(--primary-pink);
+            box-shadow: 0 0 15px var(--primary-red);
         }
 
-        @media (max-width: 768px) {
-            .nav-dots {
-                right: 10px;
-            }
-            
-            .dot {
-                width: 12px;
-                height: 12px;
-            }
+        .dot:hover {
+            background: var(--glass-white-strong);
+            transform: scale(1.2);
         }
-
-    
 
         /* ===== ANIMATIONS ===== */
         @keyframes heartbeat {
@@ -1291,6 +1052,28 @@
         @keyframes pulseText {
             0%, 100% { opacity: 0.6; }
             50% { opacity: 1; }
+        }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pageExit {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
         }
 
         @keyframes fadeInUp {
@@ -1304,15 +1087,33 @@
             }
         }
 
-        @keyframes envelopeOpen {
-            0% { transform: translateX(-50%) rotateX(-20deg); }
-            50% { transform: translateX(-50%) rotateX(30deg); }
-            100% { transform: translateX(-50%) rotateX(0deg); top: 0; }
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes titleGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 46, 99, 0.5); }
-            50% { text-shadow: 0 0 30px rgba(255, 46, 99, 0.8); }
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(255, 51, 102, 0.3));
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(255, 51, 102, 0.5));
+            }
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes buttonGlow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3); }
+            50% { box-shadow: 0 10px 30px rgba(255, 51, 102, 0.5); }
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes shake {
@@ -1321,14 +1122,33 @@
             20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
-        @keyframes bearFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes timelineReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes fillMeter {
-            from { width: 0%; }
-            to { width: 100%; }
+        @keyframes lineGrow {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+
+        @keyframes shackleMove {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes roseBloom {
+            0% { transform: rotate(45deg) scale(1); opacity: 0.8; }
+            100% { transform: rotate(45deg) scale(1.2); opacity: 1; }
         }
 
         @keyframes fadeInLeft {
@@ -1342,346 +1162,599 @@
             }
         }
 
-        @keyframes roseBloom {
-            0% { transform: rotate(45deg) scale(1); }
-            100% { transform: rotate(45deg) scale(1.2); }
+        @keyframes verseFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* ===== FLOATING ELEMENTS ANIMATION ===== */
+        @keyframes floatRandom {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        @keyframes lockFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .elegant-title {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 60px;
+                margin-right: 20px;
+            }
+            
+            .timeline-date {
+                position: absolute;
+                left: -80px;
+                width: 60px;
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-content::before {
+                display: none;
+            }
+            
+            .response-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-yes, .btn-no {
+                min-width: 200px;
+            }
+            
+            .urdu-line {
+                font-size: 1.8rem;
+            }
+            
+            .poetry-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .verse-counter {
+                order: -1;
+            }
+            
+            .poetry-footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-dots {
+                right: 10px;
+            }
+            
+            .dot {
+                width: 12px;
+                height: 12px;
+            }
         }
 
-        @keyframes shackleMove {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        @media (max-width: 480px) {
+            .envelope-glass {
+                padding: 30px 20px;
+            }
+            
+            .elegant-title {
+                font-size: 2rem;
+            }
+            
+            .proposal-question {
+                font-size: 2rem;
+            }
+            
+            .btn-yes, .btn-no {
+                padding: 15px 30px;
+                font-size: 1rem;
+                min-width: 180px;
+            }
+            
+            .swiper {
+                height: 350px;
+            }
+            
+            .urdu-line {
+                font-size: 1.5rem;
+            }
+            
+            .translation p {
+                font-size: 1rem;
+            }
         }
+        /* ===== MESSAGE DECODER ===== */
+.message-decoder {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    background: var(--glass-white);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-out 0.8s both;
+}
 
-        @keyframes spinInfinity {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+.decoder-header {
+    margin-bottom: 30px;
+}
+
+.decoder-header i {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    animation: gentlePulse 2s infinite;
+}
+
+.decoder-header h3 {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.decoder-content {
+    margin: 30px 0;
+}
+
+.decoder-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.decoder-input-group {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.decoder-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 15px 20px;
+    background: var(--glass-white);
+    border: 2px solid var(--glass-border);
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.decoder-input:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
+}
+
+.decode-btn {
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.decoded-message {
+    display: none;
+    margin-top: 30px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(126, 87, 194, 0.1));
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    animation: messageReveal 0.8s ease-out;
+}
+
+.message-icon {
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+    animation: gentlePulse 2s infinite;
+}
+
+.message-text p {
+    color: var(--light-gold);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.decoder-hint {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(255, 209, 102, 0.1);
+    border-radius: 10px;
+    border-left: 3px solid var(--gold);
+}
+
+.decoder-hint p {
+    color: var(--light-gold);
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+@keyframes messageReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive decoder */
+@media (max-width: 768px) {
+    .message-decoder {
+        padding: 25px;
+        margin: 30px auto;
+    }
+    
+    .decoder-input-group {
+        flex-direction: column;
+    }
+    
+    .decoder-input {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .message-text p {
+        font-size: 1.1rem;
+    }
+}
     </style>
 </head>
 <body>
-    <!-- Floating Hearts Background -->
-    <div class="floating-hearts" id="floating-hearts"></div>
+    <!-- Floating Elements -->
+    <div class="floating-elements" id="floating-elements"></div>
     
     <!-- Loading Screen -->
     <div class="loader" id="loader">
-        <div class="heart-loader">❤️</div>
-        <p class="loading-text">Creating magic for You...</p>
+        <div class="loader-content glass-card">
+            <div class="heart-loader">❤️</div>
+            <p class="loading-text">Creating something special for Aroush...</p>
+        </div>
     </div>
 
     <!-- Main Container -->
     <div class="container" id="main-container">
-        <!-- STEP 1: The Grand Invitation -->
+        <!-- STEP 1: Elegant Proposal -->
         <section class="step active" id="step1">
-            <div class="envelope-container">
-                <div class="envelope-flap"></div>
-                <div class="envelope-body">
-                    <div class="letter">
-                        <div class="letter-content">
-                            <h1 class="animated-title">My Dearest <span class="highlight">Aroush</span>,</h1>
-                            <p class="letter-text">There's something I've been wanting to ask you...</p>
-                            <div class="question-box">
-                                <h2><i class="fas fa-heart"></i> Will you be my Valentine? <i class="fas fa-heart"></i></h2>
-                                <p class="sub-question">...not just for this day, but for every day after?</p>
-                                
-                                <div class="response-buttons">
-                                    <button class="btn-yes" id="yes-btn">
-                                        <span class="btn-text">YES! Absolutely ❤️</span>
-                                    </button>
-                                    <button class="btn-no" id="no-btn">
-                                        <span class="btn-text">Hmm, let me think...</span>
-                                    </button>
-                                </div>
-                                
-                                <div class="secret-message" id="secret-no-message">
-                                    <p>Really, Aroush? 😢 <br> Try again, my love...</p>
-                                </div>
+            <div class="proposal-container">
+                <div class="envelope-glass glass-card">
+                    <div class="letter-content">
+                        <h1 class="elegant-title">My Dearest Aroush</h1>
+                        <p class="letter-text">There's a question that's been on my mind, growing stronger with each passing day...</p>
+                        
+                        <div class="proposal-box glass-card">
+                            <h2 class="proposal-question">Will you be my Valentine?</h2>
+                            <p class="proposal-subtext">...not just for today, but for every tomorrow that follows?</p>
+                            
+                            <div class="response-buttons">
+                                <button class="btn-yes glass-btn-primary" id="yes-btn">
+                                    <i class="fas fa-heart"></i> YES, Absolutely
+                                </button>
+                                <button class="btn-no glass-btn" id="no-btn">
+                                    <i class="fas fa-question"></i> Let me think...
+                                </button>
                             </div>
                             
-                            <div class="bear-hint">
-                                <div class="bear-icon">🐻</div>
-                                <p>P.S. You'll always be my <span class="bear-nickname">Bhallu</span> 🍯</p>
+                            <div class="secret-message" id="secret-no-message">
+                                <p>Really, my love? 😢 Try again...</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="next-step-btn" id="to-step2">
-                Continue Our Story <i class="fas fa-arrow-right"></i>
-            </button>
-        </section>
-
-        <!-- STEP 2: The Confession Timeline -->
-        <section class="step" id="step2">
-            <div class="timeline-container">
-                <h1 class="section-title"><i class="fas fa-history"></i> Our Love Story</h1>
-                <p class="section-subtitle">From a silent crush to the best thing that ever happened</p>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024</div>
-                        <div class="timeline-content">
-                            <h3>The Silent Crush Begins 💫</h3>
-                            <p>"Every day in class, I'd steal glances at you, wondering if you'd ever notice me. My heart raced each time you smiled."</p>
-                            <div class="memory-tag">I Admired You</div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">Dec 5, 2025<br>8:53 AM</div>
-                        <div class="timeline-content">
-                            <h3>The Message That Changed My World 📱</h3>
-                            <p>The exact moment your message arrived: <strong>"Hello."</strong><br>
-                            My hands were shaking as I read it. Little did I know it was the beginning of us.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">First Confession</div>
-                        <div class="timeline-content">
-                            <h3>When Hearts Spoke Aloud 💌</h3>
-                            <p>That magical moment when we both said what we'd been feeling for so long. No more hiding, just pure honesty and love.</p>
-                            <div class="chat-bubble mine">"I've liked you for so long..."</div>
-                            <div class="chat-bubble hers">"I like you too, more than you know"</div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">First "I Love You"</div>
-                        <div class="timeline-content">
-                            <h3>Those Three Magical Words ✨</h3>
-                            <p>The first time you called me <span style="color: var(--gold); font-weight: bold;">"mera bacha"</span> - my heart melted completely. I knew then this was forever.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">Present Day</div>
-                        <div class="timeline-content">
-                            <h3>Three Months of Pure Bliss 🌈</h3>
-                            <p>Every day with you feels like a blessing. From classmates to soulmates - this journey has been worth every moment of waiting.</p>
-                            <div class="love-meter-container">
-                                <div class="love-meter">
-                                    <div class="meter-fill" id="meter-fill"></div>
-                                    <span class="meter-text">How much I love you: <span id="love-percent">100%</span></span>
-                                </div>
-                            </div>
+                        
+                        <div class="bear-hint">
+                            <div class="bear-icon">🐻</div>
+                            <p>P.S. You'll always be my <span style="color: var(--gold); font-weight: 600;">Bhallu</span> 🍯</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- LOVE CALCULATOR -->
-                <div class="love-calculator">
-                    <h3>💘 Our Love Calculator</h3>
-                    <div class="calculator-inputs">
-                        <input type="text" id="name1" placeholder="Your Name" value="Hussain">
-                        <input type="text" id="name2" placeholder="Her Name" value="Aroush">
-                    </div>
-                    <button id="calculate-love">Calculate Our Love 💖</button>
-                    <div class="love-result" id="love-result">
-                        <div class="love-percentage" id="love-percentage">100%</div>
-                        <p class="love-message" id="love-message">Perfect Match! Made for each other! ❤️</p>
-                    </div>
-                </div>
-                
-                <!-- ADD THIS NEW SECTION -->
-<div class="bhallu-story">
-    <div class="story-container">
-        <h3><i class="fas fa-bear"></i> Why "Bhallu"?</h3>
-        <p class="story-intro">There's a special reason I call you Bhallu...</p>
-        
-        <div class="reveal-box">
-            <button class="reveal-btn" id="reveal-bhallu">
-                <i class="fas fa-lock"></i> Click to Reveal the Secret
-            </button>
-            
-            <div class="secret-reason" id="secret-reason">
-                <div class="secret-content">
-                    <div class="secret-icon">🐻🍯</div>
-                    <h4>The Story Behind "Bhallu"</h4>
-                    <p>
-                        I call you <strong>Bhallu</strong> because...
-                    </p>
-                    <div class="reasons-list">
-                        <div class="reason-item">
-                            <i class="fas fa-heart"></i>
-                            <span>You're as <strong>cute and cuddly</strong> as a teddy bear</span>
-                        </div>
-                        <div class="reason-item">
-                            <i class="fas fa-smile"></i>
-                            <span>Your smile is as <strong>sweet as honey</strong> </span>
-                        </div>
-                        <div class="reason-item">
-                            <i class="fas fa-hands-helping"></i>
-                            <span>You have a <strong>warm, comforting presence</strong> that makes everything better</span>
-                        </div>
-                        <div class="reason-item">
-                            <i class="fas fa-star"></i>
-                            <span>You're <strong>rare and precious</strong> - just like finding a bear in the wild with a heart of gold</span>
-                        </div>
-                        <div class="reason-item">
-                            <i class="fas fa-home"></i>
-                            <span>You make anywhere feel like <strong>home</strong>, safe and cozy</span>
-                        </div>
-                    </div>
-                    <p class="final-note">
-                        <strong>Bhallu</strong> isn't just a nickname - it's how I see you: <br>
-                        The cute, sweet, comforting bear who stole my heart! 🍯💖
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<button class="next-step-btn" id="to-step3">
-    Continue to Special Memories <i class="fas fa-arrow-right"></i>
-</button>
-            </div>
-        </section>
-
-        <!-- STEP 3: Slideshow & Interactive -->
-        <section class="step" id="step3">
-            <div class="slideshow-container">
-                <h1 class="slideshow-title"><i class="fas fa-images"></i> Our Memories Gallery</h1>
-               <!-- Swiper Slideshow - ONLY ONE! -->
-<div class="swiper">
-    <div class="swiper-wrapper">
-        <!-- Slide 1: First Message -->
-        <div class="swiper-slide photo-slide" style="background-image: url('https://i.ibb.co/Fdfn897/tkthao219-peach.gif'); background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <i class="fas fa-comment-dots"></i>
-                <h3>First Message</h3>
-                <p>December 5, 2025 - 8:53 AM</p>
-                <p>The "Hello." that started it all</p>
-            </div>
-        </div>
-        
-        <!-- Slide 2: First Love -->
-        <div class="swiper-slide photo-slide" style="background-image: url('https://i.ibb.co/359fj7t8/Snapchat-594250034.jpg'); background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <i class="fas fa-heart"></i>
-                <h3>First "I Love You"</h3>
-                <p>The moment you called me "mera bacha"</p>
-                <p>My heart found its home</p>
-            </div>
-        </div>
-        
-        <!-- Slide 3: Bhallu Moments -->
-        <div class="swiper-slide photo-slide" style="background-image: url('https://i.ibb.co/mVT5dRDB/IMG-20260102-WA0031.jpg'); background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <i class="fas fa-bear"></i>
-                <h3>My Athele</h3>
-                <p>My personal trainer 👉👈</p>
-                <p>Every moment with you is special</p>
-            </div>
-        </div>
-        
-        <!-- Slide 4: Add one more if you want -->
-        <div class="swiper-slide photo-slide" style="background-image: url('https://i.ibb.co/Gv5PmZSV/IMG-20251227-WA0029.jpg'); background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <i class="fas fa-images"></i>
-                <h3>My beauty</h3>
-                <p>Most beautiful Girl</p>
-                <p>Our journey continues...</p>
-            </div>
-        </div>
-        <!-- Replace Slide 4 with Video -->
-<div class="swiper-slide video-slide">
-    <div class="video-container">
-        <video controls muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
-            <source src="https://drive.google.com/uc?export=download&id=YOUR_VIDEO_ID" type="video/mp4">
-        </video>
-        <div class="video-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; padding: 20px;">
-            <button onclick="this.nextElementSibling.play()" style="background: var(--primary-pink); color: white; border: none; width: 60px; height: 60px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; margin-bottom: 15px;">
-                <i class="fas fa-play"></i>
-            </button>
-            <h3 style="margin-bottom: 10px;">Video Message</h3>
-            <p>A personal message for my Bhallu</p>
-        </div>
-    </div>
-</div>
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
-               
-
-                
-                <!-- VIRTUAL ROSE -->
-                <div class="virtual-rose">
-                    <h3>🌹 Virtual Rose for You</h3>
-                    <div class="rose-container">
-                        <div class="rose"></div>
-                        <div class="rose-leaf"></div>
-                        <div class="rose-leaf"></div>
-                        <div class="rose-leaf"></div>
-                    </div>
-                    <button class="gift-rose-btn" id="gift-rose-btn">Send A Virtual Rose 💝</button>
-                    <p id="rose-message" style="display:none; margin-top: 20px; color: var(--gold);">
-                        A rose for my beautiful Aroush! Just like this rose, my love for you will never fade. 💖
-                    </p>
-                </div>
-                
-                <!-- URDU POETRY -->
-                <div class="urdu-poetry-section">
-                    <h3>💌 Poetry for My Love</h3>
-                    <div class="urdu-text">تم ہو تو ہر دم خوشی ہے میرے پاس<br>تم ہو تو ہر سانس میں ہے ایک خاص</div>
-                    <div class="urdu-translation">
-                        "With you, there's happiness every moment<br>With you, every breath is special"
-                    </div>
-                </div>
-                
-                <!-- MESSAGE DECODER -->
-                <div class="message-decoder">
-                    <h3>🔐 Secret Message Decoder</h3>
-                    <p>Enter our secret code to decode a special message:</p>
-                    <input type="text" class="decoder-input" id="secret-code" placeholder="Hint:First Msg DDMM">
-                    <button class="decode-btn" id="decode-btn">Decode Message</button>
-                    <div class="decoded-message" id="decoded-message">
-                        <p>💖 You decoded my heart! My love for you is endless and eternal. I will always love you no matter what I will always be there for u anytime. You are my everything  💖</p>
-                    </div>
-                </div>
-                
-                <button class="next-step-btn" id="to-step4">
-                    Continue to Love Letters <i class="fas fa-arrow-right"></i>
+                <button class="next-step-btn glass-btn" id="to-step2">
+                    Continue Our Journey <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </section>
 
-        <!-- STEP 4: Love Letter -->
-        <section class="step" id="step4">
+        <!-- STEP 2: Our Timeline -->
+        <section class="step" id="step2">
             <div class="timeline-container">
-                <h1 class="section-title"><i class="fas fa-feather-alt"></i> My Heart in Words</h1>
-                <p class="section-subtitle">A letter from my heart to yours</p>
+                <h1 class="section-title">Our Love Story</h1>
+                <p class="section-subtitle">A timeline of how you became my everything</p>
                 
-                <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; margin: 30px 0; text-align: left;">
-                    <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;">
-                        My dearest Aroush,<br><br>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date glass-card">2024</div>
+                        <div class="timeline-content glass-card">
+                            <h3>The Silent Admiration</h3>
+                            <p>Every day in class, I'd find myself watching you, wondering if you'd ever notice. Your smile became the highlight of my day.</p>
+                            <div class="chat-bubble hers">"Did you finish the assignment?"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date glass-card">Dec 5, 2025<br>8:53 AM</div>
+                        <div class="timeline-content glass-card">
+                            <h3>The Message That Changed Everything</h3>
+                            <p>That simple "Hello" at 8:53 AM marked the beginning of us. My hands trembled as I replied.</p>
+                            <div class="chat-bubble mine">"Hey! Yeah, I just finished it"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date glass-card">First Confession</div>
+                        <div class="timeline-content glass-card">
+                            <h3>When Hearts Spoke Aloud</h3>
+                            <p>The moment we both admitted what we'd been feeling. No more pretense, just pure honesty.</p>
+                            <div class="chat-bubble mine">"I've liked you for so long..."</div>
+                            <div class="chat-bubble hers">"I like you too, more than you know"</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="love-calculator glass-card">
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">💘 Our Love Calculator</h3>
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
+                        <input type="text" id="name1" placeholder="Your Name" value="Bacha" class="glass-input">
+                        <input type="text" id="name2" placeholder="Her Name" value="Aroush" class="glass-input">
+                    </div>
+                    <button class="glass-btn-primary" id="calculate-love" style="padding: 12px 30px; font-size: 1.1rem;">Calculate Our Love 💖</button>
+                    <div class="love-result" id="love-result" style="display: none; margin-top: 20px; padding: 20px; background: var(--glass-white); border-radius: 15px;">
+                        <div class="love-percentage" id="love-percentage" style="font-size: 3rem; font-weight: bold; color: var(--primary-red); margin: 10px 0;">100%</div>
+                        <p class="love-message" id="love-message" style="color: var(--gold); font-style: italic;">Perfect Match! Made for each other! ❤️</p>
+                    </div>
+                </div>
+                
+                <button class="next-step-btn glass-btn" id="to-step3">
+                    Discover "Bhallu" <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 3: Bhallu Story (NEW PAGE) -->
+        <section class="step" id="step3">
+            <div class="bhallu-page">
+                <div class="bhallu-reveal glass-card">
+                    <h1 class="bhallu-title">Why "Bhallu"?</h1>
+                    <p class="bhallu-intro">
+                        There's a special story behind this nickname that captures exactly how I see you...
+                    </p>
+                    
+                    <div class="reason-grid">
+                        <div class="reason-card">
+                            <div class="reason-icon">🐻</div>
+                            <h4>As Cuddly as a Bear</h4>
+                            <p>You have that warm, comforting presence that makes everything feel safe and cozy, just like a soft teddy bear.</p>
+                        </div>
                         
-                        Every moment with you feels like a beautiful dream that I never want to wake up from. 
-                        From that first message to every "I love you" since, you've filled my life with colors I never knew existed.<br><br>
+                        <div class="reason-card">
+                            <div class="reason-icon">🍯</div>
+                            <h4>Sweet as Honey</h4>
+                            <p>Your kindness, your smile, your words - everything about you is as sweet and comforting as honey.</p>
+                        </div>
                         
-                        You're not just my Valentine, you're my today, my tomorrow, and all my forever. 
-                        My Bhallu, my Mari Jan, my everything.<br><br>
+                        <div class="reason-card">
+                            <div class="reason-icon">💝</div>
+                            <h4>Rare and Precious</h4>
+                            <p>Like finding a bear with a heart of gold, you're one of a kind - rare, precious, and incredibly special.</p>
+                        </div>
                         
-                        With all my love,<br>
-                        Your Bacha 💖
+                        <div class="reason-card">
+                            <div class="reason-icon">🏠</div>
+                            <h4>My Safe Haven</h4>
+                            <p>Being with you feels like home - warm, secure, and where I'm meant to be, just like a bear in its den.</p>
+                        </div>
+                        
+                        <div class="reason-card">
+                            <div class="reason-icon">✨</div>
+                            <h4>Strong Yet Gentle</h4>
+                            <p>You have the strength of a bear but the gentleness of a breeze - a perfect balance that I admire.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bhallu-poem">
+                        <p>"My Bhallu, my bear, so gentle and rare,<br>
+                        With a heart full of love beyond compare.<br>
+                        In your embrace, all worries cease,<br>
+                        You bring my restless heart to peace."</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px; color: var(--light-gold); font-style: italic;">
+                        <p>So you see, "Bhallu" isn't just a nickname - it's how my heart sees you.<br>
+                        It's the warmth, the comfort, the sweetness that you bring to my life every single day.</p>
+                    </div>
+                </div>
+                
+                <button class="next-step-btn glass-btn" id="to-step4">
+                    View Our Memories <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 4: Slideshow & Interactive -->
+        <section class="step" id="step4">
+            <div class="slideshow-container">
+                <h1 class="slideshow-title">Our Memories Gallery</h1>
+                
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide photo-slide" style="background-image: url('https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');">
+                            <div class="slide-content">
+                                <i class="fas fa-comment-dots"></i>
+                                <h3>First Message</h3>
+                                <p>December 5, 2025 - 8:53 AM</p>
+                                <p>The "Hello." that started it all</p>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide photo-slide" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');">
+                            <div class="slide-content">
+                                <i class="fas fa-heart"></i>
+                                <h3>First "I Love You"</h3>
+                                <p>The moment you called me "mera bacha"</p>
+                                <p>My heart found its home</p>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide photo-slide" style="background-image: url('https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');">
+                            <div class="slide-content">
+                                <i class="fas fa-bear"></i>
+                                <h3>My Bhallu</h3>
+                                <p>Every moment with you is special</p>
+                                <p>My sweet bear 🐻🍯</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                
+                <div class="virtual-rose">
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">🌹 A Virtual Rose for You</h3>
+                    <div class="rose-container">
+                        <div class="rose"></div>
+                    </div>
+                    <button class="glass-btn-primary" id="gift-rose-btn" style="margin-top: 20px; padding: 15px 40px;">
+                        Send A Virtual Rose 💝
+                    </button>
+                    <p id="rose-message" style="display:none; margin-top: 20px; color: var(--gold); font-style: italic;">
+                        A rose for my beautiful Aroush! Just like this rose, my love for you will never fade. 💖
                     </p>
                 </div>
                 
-                <button class="next-step-btn" id="to-step5">
-                    Unlock Final Surprise <i class="fas fa-lock"></i>
+                <!-- URDU POETRY SECTION -->
+                <div class="urdu-poetry-section glass-card">
+                    <div class="poetry-header">
+                        <i class="fas fa-pen-nib"></i>
+                        <h3>For My Bhallu 💌</h3>
+                    </div>
+                    
+                    <div class="poetry-container">
+                        <div class="urdu-verse active" id="verse1">
+                            <div class="verse-text">
+                                <p class="urdu-line">تم ہو تو ہر دم خوشی ہے میرے پاس</p>
+                                <p class="urdu-line">تم ہو تو ہر سانس میں ہے ایک خاص</p>
+                            </div>
+                            <div class="translation">
+                                <p>"With you, happiness is always with me</p>
+                                <p>With you, every breath becomes special"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="urdu-verse" id="verse2">
+                            <div class="verse-text">
+                                <p class="urdu-line">تمھاری یادوں کا یہ سلسلہ</p>
+                                <p class="urdu-line">میرے دل کی ہر دھڑکن میں بسا ہے</p>
+                            </div>
+                            <div class="translation">
+                                <p>"This chain of memories of you</p>
+                                <p>Resides in every beat of my heart"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="urdu-verse" id="verse3">
+                            <div class="verse-text">
+                                <p class="urdu-line">تم میرے خواب، تم میری حقیقت</p>
+                                <p class="urdu-line">تم ہی تو ہو میری دنیا کی پہچان</p>
+                            </div>
+                            <div class="translation">
+                                <p>"You are my dream, you are my reality</p>
+                                <p>You are the identity of my world"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="poetry-controls">
+                            <button class="prev-verse glass-btn" id="prevVerse">
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </button>
+                            <span class="verse-counter" id="verseCounter">Verse 1/3</span>
+                            <button class="next-verse glass-btn-primary" id="nextVerse">
+                                Next <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="poetry-footer">
+                        <p class="signature">— Your Bacha 💖</p>
+                        <button class="favorite-btn glass-btn" id="favoritePoetry">
+                            <i class="far fa-heart"></i> Add to Favorites
+                        </button>
+                    </div>
+                </div>
+                <!-- ===== MESSAGE DECODER ===== -->
+<div class="message-decoder glass-card">
+    <div class="decoder-header">
+        <i class="fas fa-key"></i>
+        <h3>🔐 Secret Message Decoder</h3>
+    </div>
+    
+    <div class="decoder-content">
+        <p>Enter our secret code to decode a special message:</p>
+        <div class="decoder-input-group">
+            <input type="text" class="decoder-input" id="secret-code" placeholder="Hint:First Msg DDMM" maxlength="4">
+            <button class="glass-btn-primary decode-btn" id="decode-btn">
+                <i class="fas fa-unlock"></i> Decode Message
+            </button>
+        </div>
+        
+        <div class="decoded-message glass-card" id="decoded-message">
+            <div class="message-icon">
+                <i class="fas fa-heart-circle-check"></i>
+            </div>
+            <div class="message-text">
+                <p>💖 You decoded my heart! My love for you is endless and eternal. I will always love you no matter what I will always be there for u anytime. You are my everything 💖</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="decoder-hint">
+        <p><i class="fas fa-lightbulb"></i> Hint: The date of our first message (DDMM format)</p>
+    </div>
+</div>
+                
+                <button class="next-step-btn glass-btn" id="to-step5">
+                    Final Surprise <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </section>
@@ -1689,74 +1762,52 @@
         <!-- STEP 5: Final Surprise -->
         <section class="step" id="step5">
             <div class="final-surprise">
-                <div class="surprise-box">
-                    <div class="lock-animation">
-                        <div class="lock-body">
-                            <div class="lock-shackle"></div>
-                            <div class="lock-keyhole"></div>
-                        </div>
-                        <p class="lock-text">Special Access Required</p>
+                <div class="surprise-glass glass-card">
+                    <div class="lock-glass">
+                        <div class="lock-body-glass"></div>
+                        <div class="lock-shackle-glass"></div>
                     </div>
                     
-                    <h1 class="surprise-title">One Last Secret, My Love</h1>
-                    <p class="surprise-subtitle">Enter our special code to unlock the final message</p>
+                    <h1 class="surprise-title">One Last Secret</h1>
+                    <p class="section-subtitle" style="margin-bottom: 30px;">Enter our special code to unlock the final message</p>
                     
                     <div class="password-input">
                         <input type="text" id="password" placeholder="Hint: Your nickname or Time" maxlength="10">
-                        <button id="unlock-btn"><i class="fas fa-key"></i> Unlock My Heart</button>
+                        <button class="glass-btn-primary" id="unlock-btn">
+                            <i class="fas fa-key"></i> Unlock My Heart
+                        </button>
                     </div>
                     
-                    <div class="hints">
-                        <p class="hint"><i class="fas fa-lightbulb"></i> Hint 1: My cute nickname for you</p>
-                        <p class="hint"><i class="fas fa-lightbulb"></i> Hint 2: Time Of Your First Msg</p>
+                    <div class="hints" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                        <span style="color: var(--light-gold); font-size: 0.9rem;"><i class="fas fa-lightbulb"></i> Hint 1: My cute nickname for you</span>
+                        <span style="color: var(--light-gold); font-size: 0.9rem;"><i class="fas fa-lightbulb"></i> Hint 2: Time of your first message</span>
                     </div>
                     
                     <div class="final-message" id="finalMessage">
-                        <div class="message-content">
-                            <h2><i class="fas fa-gem"></i> For My Aroush</h2>
-                            <p class="final-text">
-                                My dearest Bhallu,<br><br>
-                                If you're reading this, know that you've unlocked the deepest chambers of my heart. 
-                                Every part of this website was crafted with you in mind - from the first "Will you be my Valentine?" 
-                                to this very moment.<br><br>
-                                
-                                <strong>You are my greatest surprise.</strong> The one I didn't see coming but can't imagine living without. 
-                                The classmate who became my confidante, the crush who became my forever.<br><br>
-                                
-                                On this Valentine's Day, I want to renew my promise: I will love you through every season, 
-                                support every dream, cherish every laugh, and hold you through every tear.<br><br>
-                                
-                                Thank you for choosing me. Thank you for loving me. Thank you for being you.<br><br>
-                                
-                                This isn't just a Valentine's gift. It's a testament to what we have and what we're building together.<br><br>
-                                
-                                With all the love in the universe,
-                            </p>
-                            <div class="eternal-love">
-                                <div class="infinity-symbol">∞</div>
-                                <p>Your Bacha, Forever & Always</p>
+                        <div class="message-content glass-card">
+                            <h2 style="text-align: center; color: var(--gold); font-size: 2.2rem; margin-bottom: 30px;">
+                                <i class="fas fa-gem"></i> For My Aroush
+                            </h2>
+                            <div style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 30px;">
+                                <p>My dearest Bhallu,</p>
+                                <p>If you're reading this, know that you've unlocked the deepest chambers of my heart. Every part of this website was crafted with you in mind - from the first "Will you be my Valentine?" to this very moment.</p>
+                                <p><strong>You are my greatest surprise.</strong> The one I didn't see coming but can't imagine living without. The classmate who became my confidante, the crush who became my forever.</p>
+                                <p>On this Valentine's Day, I want to renew my promise: I will love you through every season, support every dream, cherish every laugh, and hold you through every tear.</p>
+                                <p>Thank you for choosing me. Thank you for loving me. Thank you for being you.</p>
+                                <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--light-gold);">
+                                    With all the love in the universe,<br>
+                                    Your Bacha, Forever & Always
+                                </p>
                             </div>
                             
-                            <!-- DOWNLOAD SECTION -->
-                            <div class="download-section">
-                                <h3>📥 Save This Memory Forever</h3>
-                                <p>Download our special message as a keepsake</p>
-                                <button class="download-btn" id="download-pdf">
+                            <div style="text-align: center; margin-top: 40px;">
+                                <button class="glass-btn" id="download-pdf" style="margin: 10px;">
                                     <i class="fas fa-download"></i> Download as PDF
                                 </button>
-                                <button class="download-btn" id="save-page">
-                                    <i class="fas fa-save"></i> Save Complete Page
+                                <button class="glass-btn-primary" id="share-btn" style="margin: 10px;">
+                                    <i class="fas fa-share-alt"></i> Share This Memory
                                 </button>
                             </div>
-                        </div>
-                        
-                        <button class="share-btn" id="share-btn">
-                            <i class="fas fa-share-alt"></i> Share This Memory
-                        </button>
-                        
-                        <div class="credits">
-                            <p>Made with <i class="fas fa-heart pulse"></i> for Aroush</p>
-                            <p class="small">© 2025 - Your Bacha's Digital Love Letter</p>
                         </div>
                     </div>
                 </div>
@@ -1773,625 +1824,669 @@
         <span class="dot" onclick="goToStep(5)"></span>
     </div>
 
-
-
-   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
-    // ===== VALENTINE WEBSITE SCRIPT =====
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('💖 Starting Valentine Experience...');
-        
-        // Elements
-        const steps = document.querySelectorAll('.step');
-        const dots = document.querySelectorAll('.dot');
-        const loader = document.getElementById('loader');
-        const mainContainer = document.getElementById('main-container');
-        const yesBtn = document.getElementById('yes-btn');
-        const noBtn = document.getElementById('no-btn');
-        const toStep2Btn = document.getElementById('to-step2');
-        const toStep3Btn = document.getElementById('to-step3');
-        const toStep4Btn = document.getElementById('to-step4');
-        const toStep5Btn = document.getElementById('to-step5');
-        const calculateLoveBtn = document.getElementById('calculate-love');
-        const unlockBtn = document.getElementById('unlock-btn');
-        const giftRoseBtn = document.getElementById('gift-rose-btn');
-        const decodeBtn = document.getElementById('decode-btn');
-        const downloadPdfBtn = document.getElementById('download-pdf');
-        const savePageBtn = document.getElementById('save-page');
-        const shareBtn = document.getElementById('share-btn');
-        const revealBtn = document.getElementById('reveal-bhallu');
-        
-        let currentStep = 1;
-        let noClickCount = 0;
-        let swiper = null;
-        
-        // Initialize Swiper
-        function initSwiper() {
-            if (document.querySelector('.swiper')) {
-                swiper = new Swiper('.swiper', {
-                    direction: 'horizontal',
-                    loop: true,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    },
-                });
-                console.log('✅ Swiper initialized');
-            }
-        }
-        
-        // Initialize
-        function init() {
-            setTimeout(() => {
-                loader.style.opacity = '0';
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const steps = document.querySelectorAll('.step');
+            const dots = document.querySelectorAll('.dot');
+            const loader = document.getElementById('loader');
+            const mainContainer = document.getElementById('main-container');
+            const yesBtn = document.getElementById('yes-btn');
+            const noBtn = document.getElementById('no-btn');
+            const toStep2Btn = document.getElementById('to-step2');
+            const toStep3Btn = document.getElementById('to-step3');
+            const toStep4Btn = document.getElementById('to-step4');
+            const toStep5Btn = document.getElementById('to-step5');
+            const calculateLoveBtn = document.getElementById('calculate-love');
+            const unlockBtn = document.getElementById('unlock-btn');
+            const giftRoseBtn = document.getElementById('gift-rose-btn');
+            const downloadPdfBtn = document.getElementById('download-pdf');
+            const shareBtn = document.getElementById('share-btn');
+            
+            let currentStep = 1;
+            let noClickCount = 0;
+            let swiper = null;
+            
+            // Urdu Poetry Variables
+            let urduPoetryInitialized = false;
+            let currentVerse = 1;
+            const totalVerses = 3;
+            
+            // Initialize
+            function init() {
                 setTimeout(() => {
-                    loader.style.display = 'none';
-                    mainContainer.style.display = 'block';
-                    
-                    createFloatingHearts();
-                    showStep(1);
-                    initSwiper();
-                    
-                }, 500);
-            }, 1500);
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        mainContainer.style.display = 'block';
+                        createFloatingElements();
+                        showStep(1);
+                        initSwiper();
+                        initTimelineAnimation();
+                    }, 500);
+                }, 2000);
+                
+                setupEventListeners();
+            }
             
-            setupEventListeners();
-        }
+            // Create floating elements
+            function createFloatingElements() {
+                const container = document.getElementById('floating-elements');
+                const elements = ['❤️', '✨', '🌟', '💫', '🌸', '💖', '⭐'];
+                
+                for (let i = 0; i < 25; i++) {
+                    const element = document.createElement('div');
+                    const randomElement = elements[Math.floor(Math.random() * elements.length)];
+                    element.innerHTML = randomElement;
+                    element.style.cssText = `
+                        position: fixed;
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        font-size: ${15 + Math.random() * 20}px;
+                        opacity: ${0.1 + Math.random() * 0.2};
+                        z-index: 1;
+                        pointer-events: none;
+                        animation: floatRandom ${15 + Math.random() * 20}s linear infinite;
+                        animation-delay: ${Math.random() * 5}s;
+                    `;
+                    container.appendChild(element);
+                }
+            }
+            
+            // Initialize Swiper
+            function initSwiper() {
+                if (document.querySelector('.swiper')) {
+                    swiper = new Swiper('.swiper', {
+                        direction: 'horizontal',
+                        loop: true,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        autoplay: {
+                            delay: 4000,
+                            disableOnInteraction: false,
+                        },
+                        effect: 'fade',
+                        fadeEffect: {
+                            crossFade: true
+                        },
+                    });
+                }
+            }
+            
+            // Initialize timeline animation
+            function initTimelineAnimation() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.3 });
+                
+                timelineItems.forEach(item => observer.observe(item));
+            }
+            
+            // Initialize Urdu Poetry
+            function initUrduPoetry() {
+                if (urduPoetryInitialized) return;
+                
+                const prevVerseBtn = document.getElementById('prevVerse');
+                const nextVerseBtn = document.getElementById('nextVerse');
+                const favoriteBtn = document.getElementById('favoritePoetry');
+                const verseCounter = document.getElementById('verseCounter');
+                
+                if (!prevVerseBtn || !nextVerseBtn) {
+                    console.log('Urdu poetry elements not found yet');
+                    return;
+                }
+                
+                console.log('Initializing Urdu Poetry...');
+                
+                // Function to show a specific verse
+                function showVerse(verseNum) {
+                    // Hide all verses
+                    for (let i = 1; i <= totalVerses; i++) {
+                        const verse = document.getElementById(`verse${i}`);
+                        if (verse) {
+                            verse.classList.remove('active');
+                        }
+                    }
+                    
+                    // Show the selected verse
+                    const currentVerseEl = document.getElementById(`verse${verseNum}`);
+                    if (currentVerseEl) {
+                        currentVerseEl.classList.add('active');
+                        currentVerseEl.style.animation = 'verseFadeIn 0.8s ease-out';
+                    }
+                    
+                    // Update counter
+                    if (verseCounter) {
+                        verseCounter.textContent = `Verse ${verseNum}/${totalVerses}`;
+                    }
+                    
+                    // Update button states
+                    prevVerseBtn.disabled = verseNum === 1;
+                    nextVerseBtn.disabled = verseNum === totalVerses;
+                    
+                    // Visual feedback for disabled buttons
+                    prevVerseBtn.style.opacity = verseNum === 1 ? '0.5' : '1';
+                    nextVerseBtn.style.opacity = verseNum === totalVerses ? '0.5' : '1';
+                    
+                    currentVerse = verseNum;
+                    
+                    // Add subtle confetti
+                    if (verseNum > 1) {
+                        createConfetti(5);
+                    }
+                }
+                
+                // Event listeners for navigation
+                prevVerseBtn.addEventListener('click', function() {
+                    if (currentVerse > 1) {
+                        showVerse(currentVerse - 1);
+                    }
+                });
+                
+                nextVerseBtn.addEventListener('click', function() {
+                    if (currentVerse < totalVerses) {
+                        showVerse(currentVerse + 1);
+                    }
+                });
+                
+                // Favorite button
+                if (favoriteBtn) {
+                    favoriteBtn.addEventListener('click', function() {
+                        this.classList.toggle('active');
+                        const icon = this.querySelector('i');
+                        
+                        if (this.classList.contains('active')) {
+                            icon.className = 'fas fa-heart';
+                            this.innerHTML = '<i class="fas fa-heart"></i> Added to Favorites';
+                            createConfetti(10);
+                            
+                            // Show notification
+                            const notification = document.createElement('div');
+                            notification.textContent = 'Poetry added to favorites! 💖';
+                            notification.style.cssText = `
+                                position: fixed;
+                                top: 20px;
+                                right: 20px;
+                                background: linear-gradient(135deg, var(--primary-red), var(--accent-purple));
+                                color: white;
+                                padding: 10px 20px;
+                                border-radius: 10px;
+                                z-index: 9999;
+                                animation: fadeIn 0.3s ease-out;
+                            `;
+                            document.body.appendChild(notification);
+                            
+                            setTimeout(() => {
+                                notification.remove();
+                            }, 2000);
+                        } else {
+                            icon.className = 'far fa-heart';
+                            this.innerHTML = '<i class="far fa-heart"></i> Add to Favorites';
+                        }
+                    });
+                }
+                
+                // Initialize with first verse
+                showVerse(1);
+                
+                urduPoetryInitialized = true;
+                console.log('Urdu Poetry initialized successfully!');
+            }
+            // Initialize Message Decoder
+function initMessageDecoder() {
+    const decodeBtn = document.getElementById('decode-btn');
+    const secretCodeInput = document.getElementById('secret-code');
+    const decodedMessage = document.getElementById('decoded-message');
+    
+    if (!decodeBtn || !secretCodeInput) {
+        console.log('Message decoder elements not found');
+        return;
+    }
+    
+    console.log('Initializing Message Decoder...');
+    
+    // Valid codes (from your original code)
+    const validCodes = ['0512']; // DDMM format
+    
+    decodeBtn.addEventListener('click', function() {
+        const enteredCode = secretCodeInput.value.trim();
         
-        // ===== EVENT LISTENERS =====
-        function setupEventListeners() {
-            // Yes button
-            if (yesBtn) {
+        if (validCodes.includes(enteredCode)) {
+            // Success - show decoded message
+            decodedMessage.style.display = 'block';
+            
+            // Add confetti effect
+            createConfetti(50);
+            
+            // Add animation
+            decodedMessage.style.animation = 'messageReveal 0.8s ease-out';
+            
+            // Clear input
+            secretCodeInput.value = '';
+            
+            // Change button to show success
+            this.innerHTML = '<i class="fas fa-check"></i> Decoded!';
+            this.style.background = 'linear-gradient(135deg, var(--gold), var(--light-gold))';
+            this.style.color = 'var(--dark-bg)';
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-unlock"></i> Decode Message';
+                this.style.background = '';
+                this.style.color = '';
+            }, 3000);
+            
+        } else {
+            // Wrong code - show error effect
+            secretCodeInput.style.animation = 'shake 0.5s';
+            secretCodeInput.style.borderColor = 'var(--primary-red)';
+            secretCodeInput.value = '';
+            secretCodeInput.placeholder = 'Try again...';
+            
+            // Remove animation after it completes
+            setTimeout(() => {
+                secretCodeInput.style.animation = '';
+            }, 500);
+            
+            // Show error message temporarily
+            const originalPlaceholder = secretCodeInput.placeholder;
+            secretCodeInput.placeholder = 'Incorrect code! Try: 0512';
+            
+            setTimeout(() => {
+                secretCodeInput.placeholder = originalPlaceholder;
+                secretCodeInput.style.borderColor = '';
+            }, 2000);
+        }
+    });
+    
+    // Also decode on Enter key press
+    secretCodeInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            decodeBtn.click();
+        }
+    });
+    
+    console.log('Message Decoder initialized!');
+}
+            
+            // Event Listeners
+            function setupEventListeners() {
+                // Yes button
                 yesBtn.addEventListener('click', handleYesClick);
-                console.log('✅ Yes button listener added');
-            }
-            
-            // No button
-            if (noBtn) {
+                
+                // No button
                 noBtn.addEventListener('click', handleNoClick);
-                console.log('✅ No button listener added');
-            }
-            
-            // Next step buttons - CRITICAL FIX
-            if (toStep2Btn) {
+                
+                // Next step buttons
                 toStep2Btn.addEventListener('click', () => showStep(2));
-                console.log('✅ to-step2 listener added');
-            }
-            
-            if (toStep3Btn) {
                 toStep3Btn.addEventListener('click', () => showStep(3));
-                console.log('✅ to-step3 listener added');
-            }
-            
-            if (toStep4Btn) {
                 toStep4Btn.addEventListener('click', () => showStep(4));
-                console.log('✅ to-step4 listener added');
+                toStep5Btn.addEventListener('click', () => showStep(5));
+                
+                // Love calculator
+                calculateLoveBtn.addEventListener('click', calculateLove);
+                
+                // Unlock button
+                unlockBtn.addEventListener('click', unlockFinalMessage);
+                
+                // Gift rose button
+                if (giftRoseBtn) {
+                    giftRoseBtn.addEventListener('click', giftRose);
+                }
+                
+                // Download PDF
+                if (downloadPdfBtn) {
+                    downloadPdfBtn.addEventListener('click', downloadPDF);
+                }
+                
+                // Share button
+                if (shareBtn) {
+                    shareBtn.addEventListener('click', shareSite);
+                }
+                
+                // Password input enter key
+                const passwordInput = document.getElementById('password');
+                if (passwordInput) {
+                    passwordInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') unlockFinalMessage();
+                    });
+                }
             }
             
-            if (toStep5Btn) {
-                toStep5Btn.addEventListener('click', () => showStep(5));
-                console.log('✅ to-step5 listener added');
+            // Step Navigation
+            window.goToStep = function(stepNum) {
+                showStep(stepNum);
+            };
+            
+            function showStep(stepNum) {
+                if (stepNum < 1 || stepNum > 5) return;
+                
+                // Animate exit of current step
+                const currentActive = document.querySelector('.step.active');
+                if (currentActive) {
+                    currentActive.classList.remove('active');
+                }
+                
+                // Update dots
+                dots.forEach(dot => dot.classList.remove('active'));
+                if (dots[stepNum - 1]) {
+                    dots[stepNum - 1].classList.add('active');
+                }
+                
+                // Show selected step
+                setTimeout(() => {
+                    const targetStep = document.getElementById(`step${stepNum}`);
+                    if (targetStep) {
+                        targetStep.classList.add('active');
+                        
+                        // Initialize Urdu Poetry when Step 4 becomes active
+                        if (stepNum === 4) {
+                            setTimeout(() => {
+                                initUrduPoetry();
+                                initMessageDecoder(); 
+                            }, 300);
+                        }
+                        
+                        // Scroll to top
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    currentStep = stepNum;
+                    
+                    // Step-specific actions
+                    if (stepNum === 2) {
+                        initTimelineAnimation();
+                    }
+                }, 300);
+            }
+            
+            // Yes button handler
+            function handleYesClick() {
+                createConfetti(100);
+                
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 300);
+                
+                setTimeout(() => {
+                    showStep(2);
+                }, 1000);
+            }
+            
+            // No button handler
+            function handleNoClick(e) {
+                e.stopPropagation();
+                noClickCount++;
+                
+                const btnWidth = noBtn.offsetWidth;
+                const btnHeight = noBtn.offsetHeight;
+                
+                const safeMinX = 50;
+                const safeMaxX = window.innerWidth - btnWidth - 50;
+                const safeMinY = 150;
+                const safeMaxY = window.innerHeight - btnHeight - 100;
+                
+                const randomX = Math.max(safeMinX, Math.min(safeMaxX, Math.random() * safeMaxX));
+                const randomY = Math.max(safeMinY, Math.min(safeMaxY, Math.random() * safeMaxY));
+                
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = `${randomX}px`;
+                noBtn.style.top = `${randomY}px`;
+                noBtn.style.zIndex = '9999';
+                
+                const secretNoMessage = document.getElementById('secret-no-message');
+                if (secretNoMessage) {
+                    secretNoMessage.style.display = 'block';
+                    
+                    const messages = [
+                        "Really, Aroush? 😢 Try again, my love...",
+                        "Are you sure? 🥺 I'll keep asking!",
+                        "You're breaking my heart! 💔 Just kidding...",
+                        "Okay, I see how it is! 😤 (jk, try again)",
+                        "Final chance! Say yes please? 🥰"
+                    ];
+                    
+                    const messageIndex = Math.min(noClickCount - 1, messages.length - 1);
+                    secretNoMessage.innerHTML = `<p>${messages[messageIndex]}</p>`;
+                    
+                    secretNoMessage.animate([
+                        { transform: 'translateX(0)' },
+                        { transform: 'translateX(10px)' },
+                        { transform: 'translateX(-10px)' },
+                        { transform: 'translateX(0)' }
+                    ], {
+                        duration: 300,
+                        iterations: 2
+                    });
+                }
+                
+                const scale = Math.max(0.8, 1 - (noClickCount * 0.08));
+                noBtn.style.transform = `scale(${scale})`;
             }
             
             // Love calculator
-            if (calculateLoveBtn) {
-                calculateLoveBtn.addEventListener('click', calculateLove);
-                console.log('✅ Love calculator listener added');
-            }
-            
-            // Unlock button
-            if (unlockBtn) {
-                unlockBtn.addEventListener('click', unlockFinalMessage);
-                console.log('✅ Unlock button listener added');
-            }
-            
-            // Gift rose button
-            if (giftRoseBtn) {
-                giftRoseBtn.addEventListener('click', giftRose);
-            }
-            
-            // Decode button
-            if (decodeBtn) {
-                decodeBtn.addEventListener('click', decodeMessage);
-            }
-            
-            // Download buttons
-            if (downloadPdfBtn) {
-                downloadPdfBtn.addEventListener('click', downloadPDF);
-            }
-            if (savePageBtn) {
-                savePageBtn.addEventListener('click', savePage);
-            }
-            
-            // Share button
-            if (shareBtn) {
-                shareBtn.addEventListener('click', shareSite);
-            }
-            
-            // Bhallu reveal button
-            if (revealBtn) {
-                revealBtn.addEventListener('click', revealBhalluStory);
-            }
-            
-            // Password input enter key
-            const passwordInput = document.getElementById('password');
-            if (passwordInput) {
-                passwordInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') unlockFinalMessage();
-                });
-            }
-            
-            // Secret code input enter key
-            const secretCodeInput = document.getElementById('secret-code');
-            if (secretCodeInput) {
-                secretCodeInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') decodeMessage();
-                });
-            }
-        }
-        
-        // ===== STEP NAVIGATION =====
-        window.goToStep = function(stepNum) {
-            showStep(stepNum);
-        };
-        
-        function showStep(stepNum) {
-            console.log(`Changing to step ${stepNum}`);
-            if (stepNum < 1 || stepNum > 5) return;
-            
-            // Hide all steps
-            steps.forEach(step => {
-                step.classList.remove('active');
-            });
-            
-            // Update dots
-            dots.forEach(dot => dot.classList.remove('active'));
-            if (dots[stepNum - 1]) {
-                dots[stepNum - 1].classList.add('active');
-            }
-            
-            // Show selected step
-            const targetStep = document.getElementById(`step${stepNum}`);
-            if (targetStep) {
-                targetStep.classList.add('active');
+            function calculateLove() {
+                const name1 = document.getElementById('name1')?.value || 'Bacha';
+                const name2 = document.getElementById('name2')?.value || 'Aroush';
                 
-                // Scroll to top
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-            
-            currentStep = stepNum;
-            
-            // Step-specific actions
-            if (stepNum === 2) {
-                setTimeout(animateLoveMeter, 500);
-            }
-        }
-        
-        // ===== YES BUTTON =====
-        function handleYesClick() {
-            createConfetti(100);
-            
-            this.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 300);
-            
-            setTimeout(() => {
-                showStep(2);
-            }, 1000);
-        }
-        
-        // ===== NO BUTTON =====
-        function handleNoClick(e) {
-            e.stopPropagation();
-            noClickCount++;
-            
-            const btnWidth = noBtn.offsetWidth;
-            const btnHeight = noBtn.offsetHeight;
-            
-            const safeMinX = 50;
-            const safeMaxX = window.innerWidth - btnWidth - 50;
-            const safeMinY = 150;
-            const safeMaxY = window.innerHeight - btnHeight - 100;
-            
-            const randomX = Math.max(safeMinX, Math.min(safeMaxX, Math.random() * safeMaxX));
-            const randomY = Math.max(safeMinY, Math.min(safeMaxY, Math.random() * safeMaxY));
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = `${randomX}px`;
-            noBtn.style.top = `${randomY}px`;
-            noBtn.style.zIndex = '9999';
-            
-            const secretNoMessage = document.getElementById('secret-no-message');
-            if (secretNoMessage) {
-                secretNoMessage.style.display = 'block';
-                secretNoMessage.style.zIndex = '9998';
+                let score = 95 + Math.floor(Math.random() * 6);
                 
                 const messages = [
-                    "Really, Aroush? 😢 Try again, my love...",
-                    "Are you sure? 🥺 I'll keep asking!",
-                    "You're breaking my heart! 💔 Just kidding...",
-                    "Okay, I see how it is! 😤 (jk, try again)",
-                    "Final chance! Say yes please? 🥰"
+                    "Perfect Match! Soulmates forever! 💖",
+                    "Made for each other! True love! ❤️",
+                    "Destined to be together! 💫",
+                    "A love story written in the stars! 🌟",
+                    "The perfect pair! Meant to be! 💕"
                 ];
                 
-                const messageIndex = Math.min(noClickCount - 1, messages.length - 1);
-                secretNoMessage.innerHTML = `<p>${messages[messageIndex]}</p>`;
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
                 
-                secretNoMessage.animate([
-                    { transform: 'translateX(0)' },
-                    { transform: 'translateX(10px)' },
-                    { transform: 'translateX(-10px)' },
-                    { transform: 'translateX(0)' }
-                ], {
-                    duration: 300,
-                    iterations: 2
-                });
-            }
-            
-            const scale = Math.max(0.8, 1 - (noClickCount * 0.08));
-            noBtn.style.transform = `scale(${scale})`;
-        }
-        
-        // ===== LOVE CALCULATOR =====
-        function calculateLove() {
-            console.log('Love calculator clicked');
-            const name1 = document.getElementById('name1')?.value || 'Hussain';
-            const name2 = document.getElementById('name2')?.value || 'Aroush';
-            
-            let score = 95 + Math.floor(Math.random() * 6);
-            
-            const messages = [
-                "Perfect Match! Soulmates forever! 💖",
-                "Made for each other! True love! ❤️",
-                "Destined to be together! 💫",
-                "A love story written in the stars! 🌟",
-                "The perfect pair! Meant to be! 💕"
-            ];
-            
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            
-            const resultDiv = document.getElementById('love-result');
-            const percentageDiv = document.getElementById('love-percentage');
-            const messageDiv = document.getElementById('love-message');
-            
-            if (resultDiv && percentageDiv && messageDiv) {
-                percentageDiv.textContent = `${score}%`;
-                messageDiv.textContent = randomMessage;
-                resultDiv.style.display = 'block';
+                const resultDiv = document.getElementById('love-result');
+                const percentageDiv = document.getElementById('love-percentage');
+                const messageDiv = document.getElementById('love-message');
                 
-                createConfetti(30);
-                console.log('Love calculator result shown');
-            }
-        }
-        
-        // ===== LOVE METER =====
-        function animateLoveMeter() {
-            const meterFill = document.getElementById('meter-fill');
-            const lovePercent = document.getElementById('love-percent');
-            
-            if (meterFill && lovePercent) {
-                let percent = 0;
-                const interval = setInterval(() => {
-                    if (percent < 100) {
-                        percent += 1;
-                        meterFill.style.width = `${percent}%`;
-                        lovePercent.textContent = `${percent}%`;
-                    } else {
-                        clearInterval(interval);
-                    }
-                }, 20);
-            }
-        }
-        
-        // ===== BHALLU REVEAL =====
-        function revealBhalluStory() {
-            const revealBtn = document.getElementById('reveal-bhallu');
-            const secretReason = document.getElementById('secret-reason');
-            
-            createConfetti(50);
-            
-            revealBtn.innerHTML = '<i class="fas fa-unlock"></i> Secret Revealed!';
-            revealBtn.classList.add('unlocked');
-            revealBtn.disabled = true;
-            
-            secretReason.style.display = 'block';
-            
-            const reasonItems = document.querySelectorAll('.reason-item');
-            reasonItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateX(0)';
-                }, index * 300);
-            });
-        }
-        
-        // ===== VIRTUAL ROSE =====
-        function giftRose() {
-            const roseMessage = document.getElementById('rose-message');
-            roseMessage.style.display = 'block';
-            
-            const rose = document.querySelector('.rose');
-            rose.style.animation = 'roseBloom 1s ease-in-out 3';
-            
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    createRosePetal();
-                }, i * 100);
-            }
-            
-            setTimeout(() => {
-                roseMessage.style.display = 'none';
-            }, 5000);
-        }
-        
-        function createRosePetal() {
-            const petal = document.createElement('div');
-            petal.innerHTML = '🌸';
-            petal.style.cssText = `
-                position: fixed;
-                top: -50px;
-                left: ${Math.random() * 100}%;
-                font-size: ${20 + Math.random() * 20}px;
-                opacity: 0.7;
-                z-index: 1000;
-                pointer-events: none;
-            `;
-            
-            document.body.appendChild(petal);
-            
-            petal.animate([
-                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                { transform: `translateY(${window.innerHeight + 50}px) rotate(${360 + Math.random() * 360}deg)`, opacity: 0 }
-            ], {
-                duration: 3000 + Math.random() * 2000,
-                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
-            });
-            
-            setTimeout(() => {
-                if (petal.parentNode) {
-                    petal.remove();
+                if (resultDiv && percentageDiv && messageDiv) {
+                    percentageDiv.textContent = `${score}%`;
+                    messageDiv.textContent = randomMessage;
+                    resultDiv.style.display = 'block';
+                    
+                    createConfetti(30);
                 }
-            }, 5000);
-        }
-        
-        // ===== MESSAGE DECODER =====
-        function decodeMessage() {
-            const code = document.getElementById('secret-code').value.toLowerCase();
-            const validCodes = ['0512'];
-            const decodedMessage = document.getElementById('decoded-message');
-            
-            if (validCodes.includes(code)) {
-                decodedMessage.style.display = 'block';
-                createConfetti(30);
-            } else {
-                decodedMessage.style.display = 'block';
-                decodedMessage.innerHTML = `<p>❌ Incorrect code! Try: 0512</p>`;
             }
-        }
-        
-        // ===== UNLOCK FINAL MESSAGE =====
-        function unlockFinalMessage() {
-            const password = document.getElementById('password').value.toLowerCase();
-            const validPasswords = ['bhallu', '853', '8:53', 'bear', 'aroush', 'mera bacha', 'mari jan'];
             
-            if (validPasswords.includes(password)) {
-                createConfetti(200);
+            // Virtual rose
+            function giftRose() {
+                const roseMessage = document.getElementById('rose-message');
+                roseMessage.style.display = 'block';
                 
-                const finalMessage = document.getElementById('finalMessage');
-                finalMessage.style.display = 'block';
+                const rose = document.querySelector('.rose');
+                rose.style.animation = 'roseBloom 1s ease-in-out 3';
                 
-                document.querySelector('.password-input').style.display = 'none';
-                document.querySelector('.hints').style.display = 'none';
-                document.querySelector('.lock-animation').style.display = 'none';
-                document.querySelector('.surprise-title').style.display = 'none';
-                document.querySelector('.surprise-subtitle').style.display = 'none';
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        createRosePetal();
+                    }, i * 100);
+                }
                 
                 setTimeout(() => {
-                    window.scrollTo({
-                        top: finalMessage.offsetTop - 50,
-                        behavior: 'smooth'
-                    });
-                }, 300);
-            } else {
-                const passwordInput = document.getElementById('password');
-                passwordInput.style.background = 'rgba(255, 46, 99, 0.2)';
-                passwordInput.value = '';
-                passwordInput.placeholder = 'Try again...';
-                
-                passwordInput.animate([
-                    { transform: 'translateX(0)' },
-                    { transform: 'translateX(10px)' },
-                    { transform: 'translateX(-10px)' },
-                    { transform: 'translateX(0)' }
-                ], {
-                    duration: 300,
-                    iterations: 2
-                });
+                    roseMessage.style.display = 'none';
+                }, 5000);
             }
-        }
-        
-       function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    
-    // Title
-    doc.setFontSize(28);
-    doc.setTextColor(255, 46, 99); // Pink color
-    doc.text("FOR MY JAN 💝", 105, 20, null, null, 'center');
-    
-    // Decorative line
-    doc.setDrawColor(255, 46, 99);
-    doc.line(20, 30, 190, 30);
-    
-    // Your custom message
-    doc.setFontSize(14);
-    doc.setTextColor(0, 0, 0); // Black color
-    
-    const message = [
-        "My Dearest Aroush,",
-        "",
-        "This Valentine's Day, I wanted to create something",
-        "special just for you. Every moment since December 5th",
-        "has been magical, and my love for you grows stronger",
-        "with each passing day.",
-        "",
-        "You are my Bhallu - my sweet bear who makes",
-        "every day brighter. Your smile lights up my world,",
-        "and your love fills my heart with joy.",
-        "",
-        "No matter where life takes us, know that you",
-        "will always have my heart. I promise to love you,",
-        "cherish you, and stand by you through everything.",
-        "",
-        "This digital keepsake is a small token of my",
-        "everlasting love for you.",
-        "",
-        "Forever and always,",
-        "Your Bacha 💖"
-    ];
-    
-    // Add each line to PDF
-    let yPosition = 50;
-    message.forEach(line => {
-        doc.text(line, 20, yPosition);
-        yPosition += 10;
-    });
-    
-    // Add date at bottom
-    const today = new Date();
-    const dateStr = today.toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    });
-    
-    doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
-    doc.text(`Created with love on ${dateStr}`, 105, 280, null, null, 'center');
-    
-    // Save PDF with custom name
-    doc.save('MyLoveForAroush.pdf');
-}
-        // ===== SAVE PAGE =====
-        function savePage() {
-            const content = document.documentElement.outerHTML;
-            const blob = new Blob([content], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
             
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Aroush-Valentine-Surprise.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            alert('Page saved successfully! You can open it anytime offline. 💖');
-        }
-        
-        // ===== SHARE SITE =====
-        function shareSite() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'For My Aroush 💖',
-                    text: 'A special Valentine\'s surprise made with love!',
-                    url: window.location.href
-                });
-            } else {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('Link copied to clipboard! Share it with your love 💖');
-                });
-            }
-        }
-        
-        // ===== VISUAL EFFECTS =====
-        function createFloatingHearts() {
-            const container = document.getElementById('floating-hearts');
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.style.cssText = `
+            function createRosePetal() {
+                const petal = document.createElement('div');
+                petal.innerHTML = '🌸';
+                petal.style.cssText = `
                     position: fixed;
+                    top: -50px;
                     left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    font-size: ${15 + Math.random() * 20}px;
-                    opacity: ${0.1 + Math.random() * 0.2};
-                    z-index: 1;
+                    font-size: ${20 + Math.random() * 20}px;
+                    opacity: 0.7;
+                    z-index: 1000;
                     pointer-events: none;
-                    animation: float ${15 + Math.random() * 20}s linear infinite;
-                    animation-delay: ${Math.random() * 5}s;
                 `;
-                container.appendChild(heart);
+                
+                document.body.appendChild(petal);
+                
+                petal.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 50}px) rotate(${360 + Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 2000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                setTimeout(() => {
+                    if (petal.parentNode) {
+                        petal.remove();
+                    }
+                }, 5000);
             }
             
+            // Unlock final message
+            function unlockFinalMessage() {
+                const password = document.getElementById('password').value.toLowerCase();
+                const validPasswords = ['bhallu', '853', '8:53', 'bear', 'aroush'];
+                
+                if (validPasswords.includes(password)) {
+                    createConfetti(200);
+                    
+                    const finalMessage = document.getElementById('finalMessage');
+                    finalMessage.style.display = 'block';
+                    
+                    document.querySelector('.password-input').style.display = 'none';
+                    document.querySelector('.hints').style.display = 'none';
+                    document.querySelector('.lock-glass').style.display = 'none';
+                    document.querySelector('.surprise-title').style.display = 'none';
+                    document.querySelector('.section-subtitle').style.display = 'none';
+                    
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: finalMessage.offsetTop - 50,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                } else {
+                    const passwordInput = document.getElementById('password');
+                    passwordInput.style.background = 'rgba(255, 51, 102, 0.2)';
+                    passwordInput.value = '';
+                    passwordInput.placeholder = 'Try again...';
+                    
+                    passwordInput.animate([
+                        { transform: 'translateX(0)' },
+                        { transform: 'translateX(10px)' },
+                        { transform: 'translateX(-10px)' },
+                        { transform: 'translateX(0)' }
+                    ], {
+                        duration: 300,
+                        iterations: 2
+                    });
+                }
+            }
+            
+            // Download PDF
+            function downloadPDF() {
+                alert('PDF download would start here! In a real implementation, this would generate a beautiful PDF with all our memories. 💖');
+            }
+            
+            // Share site
+            function shareSite() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'For My Aroush 💖',
+                        text: 'A special Valentine\'s surprise made with love!',
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Link copied to clipboard! Share it with your love 💖');
+                    });
+                }
+            }
+            
+            // Confetti effect
+            function createConfetti(count) {
+                const colors = ['#FF3366', '#FFD166', '#9D4EDD', '#FFFFFF'];
+                
+                for (let i = 0; i < count; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.cssText = `
+                        position: fixed;
+                        width: 10px;
+                        height: 10px;
+                        background: ${colors[Math.floor(Math.random() * colors.length)]};
+                        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                        left: ${Math.random() * 100}%;
+                        top: -20px;
+                        z-index: 1000;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(confetti);
+                    
+                    confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: 1000 + Math.random() * 2000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.remove();
+                        }
+                    }, 3000);
+                }
+            }
+            
+            // Add CSS for floating elements
             const style = document.createElement('style');
             style.textContent = `
-                @keyframes float {
+                @keyframes floatRandom {
                     0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
                     10% { opacity: 0.3; }
                     90% { opacity: 0.3; }
                     100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
                 }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .glass-input {
+                    flex: 1;
+                    min-width: 200px;
+                    padding: 12px;
+                    background: var(--glass-white);
+                    border: 1px solid var(--glass-border);
+                    border-radius: 10px;
+                    color: white;
+                    font-size: 1rem;
+                }
             `;
             document.head.appendChild(style);
-        }
-        
-        function createConfetti(count) {
-            const colors = ['#FF2E63', '#F9ED69', '#AA96DA', '#FFFFFF'];
             
-            for (let i = 0; i < count; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.cssText = `
-                    position: fixed;
-                    width: 10px;
-                    height: 10px;
-                    background: ${colors[Math.floor(Math.random() * colors.length)]};
-                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-                    left: ${Math.random() * 100}%;
-                    top: -20px;
-                    z-index: 1000;
-                    pointer-events: none;
-                `;
-                document.body.appendChild(confetti);
-                
-                confetti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], {
-                    duration: 1000 + Math.random() * 2000,
-                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
-                });
-                
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.remove();
-                    }
-                }, 3000);
-            }
-        }
-        
-        // Initialize
-        init();
-        
-        console.log('%c💝 For Aroush - My Bhallu, My Everything 💝', 
-            'color: #FF2E63; font-size: 16px; font-weight: bold;');
-    });
-</script>
+            // Initialize
+            init();
+            
+            console.log('%c💝 For Aroush - My Bhallu, My Everything 💝', 
+                'color: #FF3366; font-size: 16px; font-weight: bold;');
+        });
+    </script>
 </body>
 </html>
